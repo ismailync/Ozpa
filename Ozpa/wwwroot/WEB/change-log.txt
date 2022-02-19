@@ -1,0 +1,10 @@
+Date:  28-07-2021
+
+Version: 1.0.3
+
+===================
+
+01. Bootstrap Framework 4 to 5 Update
+02. jQuery v1.12.4 to v3.6.0 Update
+03. jQuery-migrate-v3.3.2 Added
+04. modernizr-v2.8.3 to v3.3.2 Update
