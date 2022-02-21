@@ -14,8 +14,6 @@ namespace EntityLayer.Concrete
         public string BrandName { get; set; }
         public string BrandImage { get; set; }
 
-
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+       
     }
 }

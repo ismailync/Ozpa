@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=DESKTOP-1N40TLD; database=OzpaDb; integrated security=true;");
+            optionsBuilder.UseSqlServer("server=DESKTOP-1N40TLD; database=OzpaCosmeticDb; integrated security=true;");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }

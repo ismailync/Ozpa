@@ -14,9 +14,5 @@ namespace EntityLayer.Concrete
         public string CategoryName { get; set; }
 
 
-        public int SubCategoryId { get; set; }
-        public SubCategory SubCategory { get; set; }
-
-        public List<Product> Products { get; set; }
     }
 }
