@@ -3,13 +3,16 @@
 @{
     Layout = null;
 }
-
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
 <!DOCTYPE html>
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 <table class="table table-bordered">
     <tr>
         <td>Id</td>
-        <td>Name</td>  
+        <td>Name</td>
     </tr>
     @foreach (var item in Model)
     {

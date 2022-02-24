@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Quicky - Minimal eCommerce HTML Template</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="Quicky is a powerful & a full-fledged HTML template for your store that stand out from the crowd. 6 unique homepages included in this template. You can use it for any kinda eCommerce site.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/web/quicky/assets/images/favicon.ico">
+
+    <!-- CSS
+    ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/bootstrap.min.css">
+    <!-- Material Design Iconic Font -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/material-design-iconic-font.css">
+    <!-- Simple Line Icons -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/simple-line-icons.css">
+    <!-- Local Font -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/font.css">
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/slick.css">
+    <!-- Animation -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/animate.min.css">
+    <!-- jQuery Ui -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/jquery-ui.min.css">
+    <!-- Nice Select -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/nice-select.css">
+    <!-- Timecircles -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/timecircles.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/web/quicky/assets/css/style.css">
+
+</head>
+
+<body class="template-color-1 font-family-01">
+
+    <div class="main-wrapper">
+
+        <!-- Begin Main Header Area -->
+        @await Html.PartialAsync("PartialHeader")
+        <!-- Main Header Area End Here -->
+
+        @RenderBody()
+
+        <!-- Begin Footer Area -->
+        @await Html.PartialAsync("PartialFooter")
+        <!-- Footer Area End Here -->
+
+
+        <!-- Scroll To Top Start -->
+        <a class="scroll-to-top" href=""><i class="icon-arrow-up"></i></a>
+        <!-- Scroll To Top End -->
+
+    </div>
+
+    <!-- JS
+    ============================================ -->
+    <!-- jQuery JS -->
+    <script src="~/web/quicky/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="~/web/quicky/assets/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- Modernizer JS -->
+    <script src="~/web/quicky/assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/web/quicky/assets/js/vendor/bootstrap.bundle.min.js"></script>
+
+    <!-- Slick Slider JS -->
+    <script src="~/web/quicky/assets/js/plugins/slick.min.js"></script>
+    <!-- Barrating JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery.barrating.min.js"></script>
+    <!-- Counterup JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery.counterup.js"></script>
+    <!-- Nice Select JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery.nice-select.js"></script>
+    <!-- Sticky Sidebar JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery.sticky-sidebar.js"></script>
+    <!-- Jquery-ui JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery-ui.min.js"></script>
+    <script src="~/web/quicky/assets/js/plugins/jquery.ui.touch-punch.min.js"></script>
+    <!-- Theia Sticky Sidebar JS -->
+    <script src="~/web/quicky/assets/js/plugins/theia-sticky-sidebar.min.js"></script>
+    <!-- Waypoints JS -->
+    <script src="~/web/quicky/assets/js/plugins/waypoints.min.js"></script>
+    <!-- jQuery Zoom JS -->
+    <script src="~/web/quicky/assets/js/plugins/jquery.zoom.min.js"></script>
+    <!-- Timecircles JS -->
+    <script src="~/web/quicky/assets/js/plugins/timecircles.js"></script>
+    <!-- Ajax Mail JS -->
+    <script src="~/web/quicky/assets/js/ajax-mail.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/web/quicky/assets/js/main.js"></script>
+
+</body>
+
+</html>
