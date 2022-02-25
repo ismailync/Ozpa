@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ozpa.Controllers
 {
-    public class ContactController : Controller
+    public class AboutController : Controller
     {
-        public IActionResult ContactIndex()
+        public IActionResult AboutIndex()
         {
             return View();
         }

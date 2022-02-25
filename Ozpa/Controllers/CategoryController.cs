@@ -11,7 +11,7 @@ namespace Ozpa.Controllers
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        public IActionResult Index()
+        public IActionResult CategoryIndex()
         {
             var values = cm.GetList();
             return View(values);
