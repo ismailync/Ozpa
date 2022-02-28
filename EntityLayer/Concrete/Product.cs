@@ -15,13 +15,15 @@ namespace EntityLayer.Concrete
         public string ProductName { get; set; }
         public string ProductComment { get; set; }
         public bool ProductTrend { get; set; }
-        public bool ProductSeries { get; set; }
-
+       
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
+
+        public int SeriesId { get; set; }
+        public Series Series { get; set; }
     }
 }

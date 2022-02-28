@@ -8,29 +8,29 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class SubCategoryManager : ISubCategoryService
+    public class SeriesManager : ISeriesService
     {
-        public SubCategory GetById(int id)
+        public void AboutAdd(Series series)
         {
             throw new NotImplementedException();
         }
 
-        public List<SubCategory> GetList()
+        public void AboutDelete(Series series)
         {
             throw new NotImplementedException();
         }
 
-        public void SubCategoryAdd(SubCategory subCategory)
+        public void AboutUpdate(Series series)
         {
             throw new NotImplementedException();
         }
 
-        public void SubCategoryDelete(SubCategory subCategory)
+        public Series GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void SubCategoryUpdate(SubCategory subCategory)
+        public List<Series> GetList()
         {
             throw new NotImplementedException();
         }

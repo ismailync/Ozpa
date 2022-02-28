@@ -7,16 +7,11 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class SubCategory
+    public class Series
     {
         [Key]
-        public int SubCategoryId { get; set; }
-        public string SubCategoryName { get; set; }
-
-
-        public int CategoryId { get; set; }
-        public Category Category { get; set; }
-
-
+        public int SeriesId { get; set; }
+        public int SeriesImage { get; set; }
+        public int SeriesName { get; set; }
     }
 }

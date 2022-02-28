@@ -13,12 +13,14 @@
     <tr>
         <td>Id</td>
         <td>Name</td>
+        <td>Parentid</td>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <td>@item.CategoryId</td>
             <td>@item.CategoryName</td>
+            <td>@item.CategoryParentId</td>
         </tr>
     }
 </table>
