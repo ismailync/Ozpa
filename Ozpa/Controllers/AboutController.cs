@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,11 @@ namespace Ozpa.Controllers
 {
     public class AboutController : Controller
     {
+        AboutManager cm = new AboutManager(new EfAboutRepository());
         public IActionResult AboutIndex()
         {
-            return View();
+            var values = cm.GetList();
+            return View(values);
         }
     }
 }

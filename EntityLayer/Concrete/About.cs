@@ -12,7 +12,6 @@ namespace EntityLayer.Concrete
         [Key]
         public int AboutId { get; set; }
         public string AboutComment { get; set; }
-        public string AboutVideo { get; set; }
         public string AboutTitle { get; set; }
     }
 }

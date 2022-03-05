@@ -22,8 +22,5 @@ namespace EntityLayer.Concrete
 
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
-
-        public int SeriesId { get; set; }
-        public Series Series { get; set; }
     }
 }

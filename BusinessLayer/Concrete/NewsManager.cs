@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,34 @@ namespace BusinessLayer.Concrete
 {
     public class NewsManager : INewsService
     {
+        INewsDal _newsDal;
+        public NewsManager(INewsDal newsDal)
+        {
+            _newsDal = newsDal;
+        }
         public News GetById(int id)
         {
-            throw new NotImplementedException();
+            return _newsDal.GetByID(id);
         }
 
         public List<News> GetList()
         {
-            throw new NotImplementedException();
+            return _newsDal.GetListAll();
         }
 
         public void NewsAdd(News news)
         {
-            throw new NotImplementedException();
+            _newsDal.Insert(news);
         }
 
         public void NewsDelete(News news)
         {
-            throw new NotImplementedException();
+            _newsDal.Delete(news);
         }
 
         public void NewsUpdate(News news)
         {
-            throw new NotImplementedException();
+            _newsDal.Update(news);
         }
     }
 }

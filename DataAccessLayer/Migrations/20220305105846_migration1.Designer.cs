@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220221122734_mig2")]
-    partial class mig2
+    [Migration("20220305105846_migration1")]
+    partial class migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("AboutComment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AboutVideo")
+                    b.Property<string>("AboutTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AboutId");
@@ -48,12 +48,12 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("BannerImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.HasKey("BannerId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Banners");
                 });
@@ -85,6 +85,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryParentId")
+                        .HasColumnType("int");
 
                     b.HasKey("CategoryId");
 
@@ -134,9 +137,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ProductSeries")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("ProductTrend")
                         .HasColumnType("bit");
 
@@ -149,9 +149,9 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
                 {
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int>("SeriesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -159,25 +159,28 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SubCategoryName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SeriesImage")
+                        .HasColumnType("int");
 
-                    b.HasKey("SubCategoryId");
+                    b.Property<int>("SeriesName")
+                        .HasColumnType("int");
+
+                    b.HasKey("SeriesId");
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategories");
+                    b.ToTable("Series");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Banner", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Product", "Product")
+                    b.HasOne("EntityLayer.Concrete.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
@@ -199,7 +202,7 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.SubCategory", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
                         .WithMany()

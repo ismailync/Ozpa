@@ -31,9 +31,6 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("AboutTitle")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AboutVideo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("AboutId");
 
                     b.ToTable("Abouts");
@@ -141,16 +138,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("ProductTrend")
                         .HasColumnType("bit");
 
-                    b.Property<int>("SeriesId")
-                        .HasColumnType("int");
-
                     b.HasKey("ProductId");
 
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("SeriesId");
 
                     b.ToTable("Products");
                 });
@@ -162,6 +154,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SeriesImage")
                         .HasColumnType("int");
 
@@ -169,6 +164,8 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SeriesId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Series");
                 });
@@ -198,17 +195,20 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Series", "Series")
-                        .WithMany()
-                        .HasForeignKey("SeriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Brand");
 
                     b.Navigation("Category");
+                });
 
-                    b.Navigation("Series");
+            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
