@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,34 @@ namespace BusinessLayer.Concrete
 {
     public class BrandManager : IBrandService
     {
+        IBrandDal _brandDal;
+        public BrandManager(IBrandDal brandDal)
+        {
+            _brandDal = brandDal;
+        }
         public void BrandAdd(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Insert(brand);
         }
 
         public void BrandDelete(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Delete(brand);
         }
 
         public void BrandUpdate(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Update(brand);
         }
 
         public Brand GetById(int id)
         {
-            throw new NotImplementedException();
+            return _brandDal.GetByID(id);
         }
 
         public List<Brand> GetList()
         {
-            throw new NotImplementedException();
+            return _brandDal.GetListAll();
         }
     }
 }

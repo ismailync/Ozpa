@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,12 @@ namespace Ozpa.Controllers
 {
     public class BrandController : Controller
     {
+        BrandManager cm = new BrandManager(new EfBrandRepository());
+
         public IActionResult BrandIndex()
         {
-            return View();
+            var values = cm.GetList();
+            return View(values);
         }
     }
 }
