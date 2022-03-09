@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,31 +9,36 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class BannnerManager : IBannerService
+    public class BannerManager : IBannerService
     {
+        IBannerDal _bannerDal;
+        public BannerManager(IBannerDal bannerDal)
+        {
+            _bannerDal = bannerDal;
+        }
         public void BannerAdd(Banner banner)
         {
-            throw new NotImplementedException();
+            _bannerDal.Insert(banner);
         }
 
         public void BannerDelete(Banner banner)
         {
-            throw new NotImplementedException();
+            _bannerDal.Delete(banner);
         }
 
         public void BannerUpdate(Banner banner)
         {
-            throw new NotImplementedException();
+            _bannerDal.Update(banner);
         }
 
         public Banner GetById(int id)
         {
-            throw new NotImplementedException();
+            return _bannerDal.GetByID(id);
         }
 
         public List<Banner> GetList()
         {
-            throw new NotImplementedException();
+            return _bannerDal.GetListAll();
         }
     }
 }

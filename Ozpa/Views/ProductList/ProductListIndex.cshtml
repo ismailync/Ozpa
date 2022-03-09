@@ -1,4 +1,5 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Product>
 @{
     ViewData["Title"] = "ProductListIndex";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -65,170 +66,32 @@
                             </div>
                         </div>
                     </div>
-
-
+                    <!--  class="product-content bg-snow" -->
                     <div class="col-lg-10 order-1 order-lg-2">
                         <div class="shop-product-wrap grid gridview-3 row">
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-8">
+                                    <div class="product-item">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                                    <img src="@item.ProductImage">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <div class="product-desc_info">
+                                                    <h3 class="product-name text-center">
+                                                        <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                                            @item.ProductName
+                                                        </a>
+                                                    </h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="product-item">
-                                    <div class="single-product">
-                                        <div class="product-img">
-                                            <a href="single-product.html">
-                                                <img src="~/web/quicky/assets/images/product/medium-size/25.jpg">
-                                            </a>
-                                        </div>
-                                        <div class="product-content bg-snow">
-                                            <div class="product-desc_info">
-                                                <h3 class="product-name">
-                                                    <a href="single-product.html">
-                                                        Abstract Design
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
 

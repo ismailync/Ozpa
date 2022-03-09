@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Ozpa.Models;
 using System;
@@ -13,6 +16,9 @@ namespace Ozpa.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        BannerManager cm = new BannerManager(new EfBannerRepository());
+        ProductManager pm = new ProductManager(new EfProductRepository());
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,8 +26,13 @@ namespace Ozpa.Controllers
 
         public IActionResult HomeIndex()
         {
-            return View();
+            var mainModel = new MainModel();
+            mainModel.Banners = cm.GetList();
+            mainModel.Products = pm.GetList();
+            return View(mainModel);
         }
+
+       
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -29,5 +40,7 @@ namespace Ozpa.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+       
     }
 }

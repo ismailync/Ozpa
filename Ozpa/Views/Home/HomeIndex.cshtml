@@ -1,4 +1,6 @@
-﻿@{
+﻿@using EntityLayer.Concrete
+@model MainModel
+@{
     ViewData["Title"] = "Home Page";
 }
 @{
@@ -51,198 +53,70 @@
 
 
         <!-- Begin Slider Area -->
-        <div class="slider-area">
-
-            <div class="quicky-element-carousel home-slider arrow-style" data-slick-options='{
-                "slidesToShow": 1,
-                "slidesToScroll": 1,
-                "infinite": true,
-                "arrows": true,
-                "dots": false,
-                "autoplay" : true,
-                "fade" : true,
-                "autoplaySpeed" : 7000,
-                "pauseOnHover" : false,
-                "pauseOnFocus" : false
-                }' data-slick-responsive='[
-                {"breakpoint":768, "settings": {
-                "slidesToShow": 1
-                }},
-                {"breakpoint":575, "settings": {
-                "slidesToShow": 1
-                }}
-            ]'>
-                <div class="slide-item animation-style-01 bg-1">
-                    <div class="slider-progress"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="inner-slide">
-                                    <div class="slide-content">
-                                        <h2>Basket Weave</h2>
-                                        <p class="short-desc">
-                                            Produce and supply various Handicraft items all over
-                                            the world which were very attractive
-                                        </p>
-                                        <div class="slide-btn">
-                                            <a class="quicky-btn horizontal-line_ltr" href="shop-left-sidebar.html">Discover Now!</a>
-                                        </div>
-                                    </div>
-                                    <div class="slider-img">
-                                        <img src="assets/images/slider/slider-product/1.png" alt="Slider Product">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-item animation-style-02 bg-1">
-                    <div class="slider-progress"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="inner-slide">
-                                    <div class="slide-content">
-                                        <h2>Basket Weave</h2>
-                                        <p class="short-desc">
-                                            Produce and supply various Handicraft items all over
-                                            the world which were very attractive
-                                        </p>
-                                        <div class="slide-btn">
-                                            <a class="quicky-btn horizontal-line_ltr" href="shop-left-sidebar.html">Discover Now!</a>
-                                        </div>
-                                    </div>
-                                    <div class="slider-img">
-                                        <img src="assets/images/slider/slider-product/2.png" alt="Slider Product">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="slide-item animation-style-03 bg-1">
-                    <div class="slider-progress"></div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="inner-slide">
-                                    <div class="slider-img">
-                                        <img src="assets/images/slider/slider-product/3.png" alt="Slider Product">
-                                    </div>
-                                    <div class="slide-content slide-content_right">
-                                        <h2>Basket Weave</h2>
-                                        <p class="short-desc">
-                                            Produce and supply various Handicraft items all over
-                                            the world which were very attractive
-                                        </p>
-                                        <div class="slide-btn">
-                                            <a class="quicky-btn horizontal-line_ltr horizontal-line_rtl" href="shop-left-sidebar.html">Discover Now!</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+        @await Html.PartialAsync("SliderPartial")
         <!-- Slider Area End Here -->
-
-        <!-- Begin Letest Blog Area -->
-        <div class="latest-blog_area pt-95 pb-90">
+        <!-- Begin Banner Area -->
+        <div class="banner-area pt-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h3 class="heading">Trend Ürünler</h3>
+                    <div class="col-md-4 col-6 custom-xxs-col">
+                        <div class="banner-item">
+                            <div class="banner-img">
+                                <a href="javascript:void(0)">
+                                    <img src="~/web/quicky/assets/images/banner/p.jpg" alt="Quicky's Banner">
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="quicky-element-carousel product-slider" data-slick-options='{
-                            "slidesToShow": 3,
-                            "slidesToScroll": 1,
-                            "infinite": false,
-                            "arrows": false,
-                            "dots": false,
-                            "spaceBetween": 30
-                            }' data-slick-responsive='[
-                            {"breakpoint":992, "settings": {
-                            "slidesToShow": 2
-                            }},
-                            {"breakpoint":768, "settings": {
-                            "slidesToShow": 2
-                            }},
-                            {"breakpoint":480, "settings": {
-                            "slidesToShow": 1
-                            }}
-                        ]'>
-
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-details.html">
-                                        <img src="~/web/quicky/assets/images/blog/medium-size/1.jpg" alt="Quicky's Blog">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="heading">
-                                        <a href="blog-details.html">
-                                            Oda kokusu
+                    <div class="col-md-8 col-6 custom-xxs-col">
+                        <div class="row banner-wrap">
+                            <div class="col-md-6">
+                                <div class="banner-item">
+                                    <div class="banner-img">
+                                        <a href="javascript:void(0)">
+                                            <img src="~/web/quicky/assets/images/banner/p2.jpg" alt="Quicky's Banner">
                                         </a>
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-details.html">
-                                        <img src="~/web/quicky/assets/images/blog/medium-size/2.jpg" alt="Quicky's Blog">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="heading">
-                                        <a href="blog-details.html">
-                                            Tütsü
+                            <div class="col-md-6">
+                                <div class="banner-item">
+                                    <div class="banner-img">
+                                        <a href="javascript:void(0)">
+                                            <img src="~/web/quicky/assets/images/banner/p3.jpg" alt="Quicky's Banner">
                                         </a>
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-details.html">
-                                        <img src="~/web/quicky/assets/images/blog/medium-size/3.jpg" alt="Quicky's Blog">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="heading">
-                                        <a href="blog-details.html">
-                                            Parfüm
+                        </div>
+                        <div class="row banner-wrap d-none d-md-block">
+                            <div class="col-lg-12">
+                                <div class="banner-item">
+                                    <div class="banner-img">
+                                        <a href="javascript:void(0)">
+                                            <img src="~/web/quicky/assets/images/banner/p1.jpg" alt="Quicky's Banner">
                                         </a>
-                                    </h3>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="blog-details.html">
-                                        <img src="~/web/quicky/assets/images/blog/medium-size/1.jpg" alt="Quicky's Blog">
-                                    </a>
-                                </div>
-                                <div class="blog-content">
-                                    <h3 class="heading">
-                                        <a href="blog-details.html">
-                                            Koku
-                                        </a>
-                                    </h3>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 d-block d-md-none">
+                        <div class="banner-item specific-banner_item">
+                            <div class="banner-img">
+                                <a href="javascript:void(0)">
+                                    <img src="~/web/quicky/assets/images/banner/1-4.jpg" alt="Quicky's Banner">
+                                </a>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Banner Area End Here -->
+        <!-- Begin Letest Blog Area -->
+        @await Html.PartialAsync("TrendPartial")
         <!-- Letest Blog Area End Here -->
-
         <!-- Begin Banner Area Seven -->
         <div class="banner-area-7 pt-30 ml-6 mr-6 mb-3">
             <div class="container-fluid">
@@ -283,7 +157,6 @@
             </div>
         </div>
         <!-- Banner Area Seven End Here -->
-
         <!-- Begin Letest Blog Area -->
         <div class="latest-blog_area pt-95 pb-90">
             <div class="container">
@@ -354,14 +227,13 @@
                                         </a>
                                     </h3>
                                 </div>
-                            </div>                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Letest Blog Area End Here -->
-
         <!-- Scroll To Top Start -->
         <a class="scroll-to-top" href=""><i class="icon-arrow-up"></i></a>
         <!-- Scroll To Top End -->
