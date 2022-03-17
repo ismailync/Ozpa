@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,34 @@ namespace BusinessLayer.Concrete
 {
     public class SeriesManager : ISeriesService
     {
-        public void AboutAdd(Series series)
+        ISeriesDal _seriesDal;
+        public SeriesManager(ISeriesDal seriesDal)
         {
-            throw new NotImplementedException();
+            _seriesDal = seriesDal;
         }
-
-        public void AboutDelete(Series series)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AboutUpdate(Series series)
-        {
-            throw new NotImplementedException();
-        }
-
         public Series GetById(int id)
         {
-            throw new NotImplementedException();
+            return _seriesDal.GetByID(id);
         }
 
         public List<Series> GetList()
         {
-            throw new NotImplementedException();
+            return _seriesDal.GetListAll();
+        }
+
+        public void SeriesAdd(Series series)
+        {
+            _seriesDal.Insert(series);
+        }
+
+        public void SeriesDelete(Series series)
+        {
+            _seriesDal.Delete(series);
+        }
+
+        public void SeriesUpdate(Series series)
+        {
+            _seriesDal.Update(series);
         }
     }
 }

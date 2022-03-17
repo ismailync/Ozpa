@@ -11,8 +11,8 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int SeriesId { get; set; }
-        public int SeriesImage { get; set; }
-        public int SeriesName { get; set; }
+        public string SeriesImage { get; set; }
+        public string SeriesName { get; set; }
 
         public int CategoryId { get; set; }
         public Category Category { get; set; }

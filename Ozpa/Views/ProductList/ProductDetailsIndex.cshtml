@@ -8,14 +8,22 @@
     <div class="main-wrapper wrapper-boxed_layout">
         <!-- Begin Main Content Area -->
         <div class="main-content_area">
-
-
-            <!-- Begin Banner With Text Area -->
-            @foreach (var item in Model)
-            {
-                <div class="banner-with_text banner-with_text-2 overflow-hidden pt-160 mb-5">
-                    <div class="container-fluid p-0">
-                        <div class="row">
+            <div class="banner-with_text banner-with_text-2 overflow-hidden pt-160 mb-5">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-lg-2 order-2 order-lg-1 col-4">
+                            <div class="quicky-sidebar-catagories_area">
+                                <div class="quicky-sidebar_categories category-module">
+                                    <dl>
+                                        <dt>Coffee</dt>
+                                        <dd>black hot drink</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Begin Banner With Text Area -->
+                        @foreach (var item in Model)
+                        {
                             <div class="col-md-4 col-6 custom-xxs-col">
                                 <div class="banner-item">
                                     <div class="banner-img">
@@ -31,10 +39,11 @@
                                     <p class="short-desc pearl-text_color">@item.ProductComment</p>
                                 </div>
                             </div>
-                        </div>
+
+                        }
                     </div>
                 </div>
-            }
+            </div>
             <!-- Banner With Text Area End Here -->
         </div>
         <!-- Main Content Area End Here -->

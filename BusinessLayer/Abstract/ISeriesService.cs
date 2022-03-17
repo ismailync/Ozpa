@@ -9,9 +9,9 @@ namespace BusinessLayer.Abstract
 {
     public interface ISeriesService
     {
-        void AboutAdd(Series series);
-        void AboutDelete(Series series);
-        void AboutUpdate(Series series);
+        void SeriesAdd(Series series);
+        void SeriesDelete(Series series);
+        void SeriesUpdate(Series series);
         List<Series> GetList();
         Series GetById(int id);
     }

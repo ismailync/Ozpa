@@ -16,8 +16,10 @@ namespace Ozpa.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        BannerManager cm = new BannerManager(new EfBannerRepository());
+        BannerManager bm = new BannerManager(new EfBannerRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
+        BrandManager brm = new BrandManager(new EfBrandRepository());
+        SeriesManager sm = new SeriesManager(new EfSeriesRepository());
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -27,8 +29,10 @@ namespace Ozpa.Controllers
         public IActionResult HomeIndex()
         {
             var mainModel = new MainModel();
-            mainModel.Banners = cm.GetList();
+            mainModel.Banners = bm.GetList();
             mainModel.Products = pm.GetList();
+            mainModel.Brands = brm.GetList();
+            mainModel.Series = sm.GetList();
             return View(mainModel);
         }
 
