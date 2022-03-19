@@ -1,0 +1,68 @@
+﻿@using EntityLayer.Concrete
+@model List<Product>
+@{
+    ViewData["Title"] = "ProductListIndex";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<!doctype html>
+<html class="no-js" lang="en">
+
+
+
+<body class="template-color-5 font-family-02">
+
+    <div class="main-wrapper wrapper-boxed_layout">
+        <div class="col-12  mt-5">
+            <div class="section-title">
+                <h3 class="heading">Ürünler</h3>
+            </div>
+        </div>
+        <!-- Begin Quicky's Content Wrapper Area -->
+        <div class="quicky-content_wrapper pt-90 pb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 order-2 order-lg-1 col-4">
+                        <div class="quicky-sidebar-catagories_area">
+                            <div class="quicky-sidebar_categories category-module">
+                                <dl>
+                                    <dt>Coffee</dt>
+                                    <dd>black hot drink</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  class="product-content bg-snow" -->
+                    <div class="col-lg-10 order-1 order-lg-2">
+                        <div class="shop-product-wrap grid gridview-3 row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-8">
+                                    <div class="product-item">
+                                        <div class="single-product">
+                                            <div class="product-img">
+                                                <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                                    <img src="@item.ProductImage">
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <div class="product-desc_info">
+                                                    <h3 class="product-name text-center">
+                                                        <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                                            @item.ProductName
+                                                        </a>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

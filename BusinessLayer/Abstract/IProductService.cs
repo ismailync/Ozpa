@@ -14,5 +14,7 @@ namespace BusinessLayer.Abstract
         void ProductUpdate(Product product);
         List<Product> GetList();
         Product GetById(int id);
+        List<Product> GetProductListByBrand(int id);
+
     }
 }

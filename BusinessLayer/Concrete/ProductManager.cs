@@ -48,5 +48,10 @@ namespace BusinessLayer.Concrete
         {
             _productDal.Update(product);
         }
+
+        public List<Product> GetProductListByBrand(int id)
+        {
+            return _productDal.GetListAll(x => x.BrandId == id);
+        }
     }
 }
