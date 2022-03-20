@@ -1,0 +1,64 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ÖZPA ADMİN</title>
+    <link rel="stylesheet" href="~/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/admin/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/admin/assets/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="~/web/quicky/assets/images/menu/logo/logo.jpg">
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href="~/web/quicky/assets/images/menu/logo/logo.jpg"><img src="~/web/quicky/assets/images/menu/logo/logo.jpg" alt="logo" /></a>
+            </div>           
+        </nav>
+        <div class="container-fluid page-body-wrapper">
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminBrand/ABrand">
+                            <span class="menu-title">Markalar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminCategory/ACategory">
+                            <span class="menu-title">Kategori</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminProduct/AProduct">
+                            <span class="menu-title">Ürün</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminNews/ANews">
+                            <span class="menu-title">Haber & Duyurular</span>
+                        </a>
+                    </li>                   
+                </ul>
+            </nav>
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/admin/assets/js/off-canvas.js"></script>
+    <script src="~/admin/assets/js/hoverable-collapse.js"></script>
+    <script src="~/admin/assets/js/misc.js"></script>
+
+</body>
+</html>
+
