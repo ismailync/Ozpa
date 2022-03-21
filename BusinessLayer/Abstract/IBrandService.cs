@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IBrandService
-    {
-        void BrandAdd(Brand brand);
-        void BrandDelete(Brand brand);
-        void BrandUpdate(Brand brand);
-        List<Brand> GetList();
-        Brand GetById(int id);
+    public interface IBrandService : IGenericService<Brand>
+    {    
     }
 }

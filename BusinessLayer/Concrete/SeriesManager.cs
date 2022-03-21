@@ -25,20 +25,19 @@ namespace BusinessLayer.Concrete
         {
             return _seriesDal.GetListAll();
         }
-
-        public void SeriesAdd(Series series)
+        public void TAdd(Series t)
         {
-            _seriesDal.Insert(series);
+            _seriesDal.Insert(t);
         }
 
-        public void SeriesDelete(Series series)
+        public void TDelete(Series t)
         {
-            _seriesDal.Delete(series);
+            _seriesDal.Delete(t);
         }
 
-        public void SeriesUpdate(Series series)
+        public void TUpdate(Series t)
         {
-            _seriesDal.Update(series);
+            _seriesDal.Update(t);
         }
     }
 }

@@ -21,5 +21,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<News> News { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Series> Series { get; set; }
+        public DbSet<AdminLogin> AdminLogins { get; set; }
+
     }
 }

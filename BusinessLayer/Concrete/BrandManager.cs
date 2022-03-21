@@ -16,21 +16,6 @@ namespace BusinessLayer.Concrete
         {
             _brandDal = brandDal;
         }
-        public void BrandAdd(Brand brand)
-        {
-            _brandDal.Insert(brand);
-        }
-
-        public void BrandDelete(Brand brand)
-        {
-            _brandDal.Delete(brand);
-        }
-
-        public void BrandUpdate(Brand brand)
-        {
-            _brandDal.Update(brand);
-        }
-
         public Brand GetById(int id)
         {
             return _brandDal.GetByID(id);
@@ -39,6 +24,21 @@ namespace BusinessLayer.Concrete
         public List<Brand> GetList()
         {
             return _brandDal.GetListAll();
+        }
+
+        public void TAdd(Brand t)
+        {
+            _brandDal.Insert(t);
+        }
+
+        public void TDelete(Brand t)
+        {
+            _brandDal.Delete(t);
+        }
+
+        public void TUpdate(Brand t)
+        {
+            _brandDal.Update(t);
         }
     }
 }

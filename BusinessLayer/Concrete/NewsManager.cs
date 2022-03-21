@@ -25,20 +25,19 @@ namespace BusinessLayer.Concrete
         {
             return _newsDal.GetListAll();
         }
-
-        public void NewsAdd(News news)
+        public void TAdd(News t)
         {
-            _newsDal.Insert(news);
+            _newsDal.Insert(t);
         }
 
-        public void NewsDelete(News news)
+        public void TDelete(News t)
         {
-            _newsDal.Delete(news);
+            _newsDal.Delete(t);
         }
 
-        public void NewsUpdate(News news)
+        public void TUpdate(News t)
         {
-            _newsDal.Update(news);
+            _newsDal.Update(t);
         }
     }
 }

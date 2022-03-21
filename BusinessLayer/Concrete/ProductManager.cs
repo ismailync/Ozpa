@@ -33,25 +33,24 @@ namespace BusinessLayer.Concrete
         {
             return _productDal.GetListAll();
         }
-
-        public void ProductAdd(Product product)
-        {
-            _productDal.Insert(product);
-        }
-
-        public void ProductDelete(Product product)
-        {
-            _productDal.Delete(product);
-        }
-
-        public void ProductUpdate(Product product)
-        {
-            _productDal.Update(product);
-        }
-
         public List<Product> GetProductListByBrand(int id)
         {
             return _productDal.GetListAll(x => x.BrandId == id);
+        }
+
+        public void TAdd(Product t)
+        {
+            _productDal.Insert(t);
+        }
+
+        public void TDelete(Product t)
+        {
+            _productDal.Delete(t);
+        }
+
+        public void TUpdate(Product t)
+        {
+            _productDal.Update(t);
         }
     }
 }

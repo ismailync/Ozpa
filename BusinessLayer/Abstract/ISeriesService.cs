@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ISeriesService
+    public interface ISeriesService : IGenericService<Series>
     {
-        void SeriesAdd(Series series);
-        void SeriesDelete(Series series);
-        void SeriesUpdate(Series series);
-        List<Series> GetList();
-        Series GetById(int id);
     }
 }

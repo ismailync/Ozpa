@@ -16,21 +16,6 @@ namespace BusinessLayer.Concrete
         {
             _bannerDal = bannerDal;
         }
-        public void BannerAdd(Banner banner)
-        {
-            _bannerDal.Insert(banner);
-        }
-
-        public void BannerDelete(Banner banner)
-        {
-            _bannerDal.Delete(banner);
-        }
-
-        public void BannerUpdate(Banner banner)
-        {
-            _bannerDal.Update(banner);
-        }
-
         public Banner GetById(int id)
         {
             return _bannerDal.GetByID(id);
@@ -39,6 +24,21 @@ namespace BusinessLayer.Concrete
         public List<Banner> GetList()
         {
             return _bannerDal.GetListAll();
+        }
+
+        public void TAdd(Banner t)
+        {
+            _bannerDal.Insert(t);
+        }
+
+        public void TDelete(Banner t)
+        {
+            _bannerDal.Delete(t);
+        }
+
+        public void TUpdate(Banner t)
+        {
+            _bannerDal.Update(t);
         }
     }
 }

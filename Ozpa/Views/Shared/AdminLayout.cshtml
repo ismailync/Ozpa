@@ -18,9 +18,15 @@
     <div class="container-scroller">
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="~/web/quicky/assets/images/menu/logo/logo.jpg"><img src="~/web/quicky/assets/images/menu/logo/logo.jpg" alt="logo" /></a>
-            </div>           
+                <a class="navbar-brand brand-logo"><img src="~/web/quicky/assets/images/menu/logo/ozpa.jpg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">            
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
         </nav>
+
         <div class="container-fluid page-body-wrapper">
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
@@ -40,10 +46,25 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="~/AdminSeries/ASeries">
+                            <span class="menu-title">Seriler</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminSlider/ASlider">
+                            <span class="menu-title">Slider</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="~/AdminNews/ANews">
                             <span class="menu-title">Haber & Duyurular</span>
                         </a>
-                    </li>                   
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/AdminLogin/ALogin">
+                            <span class="menu-title">Şifre Değiştir</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <div class="main-panel">
