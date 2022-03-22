@@ -1,8 +1,33 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Banner>
 @{
     ViewData["Title"] = "ASlider";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h1>ASlider</h1>
-
+<h1>Slider</h1>
+<br />
+<a href="SliderAdd" class="btn btn-primary">Yeni Ekle</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Slider resim</th>
+        <th>Category id</th>
+        <th>Düzenle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a>
+                    <img src="@item.BannerImage">
+                </a>
+            </td>
+            <td>@item.CategoryId</td>
+            <td><a href="#" class="btn btn-warning">Düzenle</a></td>
+            <td><a href="#" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.Product
+@{
+    ViewData["Title"] = "ProductAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Ürün ekle</h1>
+<br />
+
+@using (Html.BeginForm("ProductAdd", "AdminProduct", FormMethod.Post))
+{
+    @Html.Label("Ürün adı")
+    @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ProductName)
+    <br />
+    <br />
+    @Html.Label("Ürün resim")
+    @Html.TextBoxFor(x => x.ProductImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ProductImage)
+    <br />
+    <br />
+    @Html.Label("Ürün açıklama")
+    @Html.TextAreaFor(x => x.ProductComment, 10,5,new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ProductComment)
+    <br />
+    <br />
+    @Html.Label("Marka")
+    @Html.TextBoxFor(x => x.BrandId, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BrandId)
+    <br />
+    <br />
+    @Html.Label("Kategori")
+    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryId)
+    <br />
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+}

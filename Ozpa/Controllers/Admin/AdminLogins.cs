@@ -11,31 +11,29 @@ using System.Threading.Tasks;
 
 namespace Ozpa.Controllers.Admin
 {
-    public class AdminNews : Controller
+    public class AdminLogins : Controller
     {
-        NewsManager cm = new NewsManager(new EfNewsRepository());
-
-        public IActionResult ANews()
+        AdminLoginManager lm = new AdminLoginManager(new EfAdminLoginRepository());
+        public IActionResult ALogin()
         {
-            var values = cm.GetList();
+            var values = lm.GetList();
             return View(values);
         }
 
         [HttpGet]
-        public IActionResult NewsAdd()
+        public IActionResult LoginAdd()
         {
             return View();
         }
-
         [HttpPost]
-        public IActionResult NewsAdd(News b)
+        public IActionResult LoginAdd(AdminLogin b)
         {
-            NewsValidator bv = new NewsValidator();
-            ValidationResult results = bv.Validate(b);
+            AdminLoginValidator lv = new AdminLoginValidator();
+            ValidationResult results = lv.Validate(b);
             if (results.IsValid)
             {
-                cm.TAdd(b);
-                return RedirectToAction("ANews", "AdminNews");
+                lm.TAdd(b);
+                return RedirectToAction("ACategory", "AdminCategory");
             }
             else
             {

@@ -1,0 +1,25 @@
+﻿@using EntityLayer.Concrete
+@model List<AdminLogin>
+@{
+    ViewData["Title"] = "ALogin";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Admin bilgileri</h1>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Admin id</th>
+        <th>Admin şifre</th>
+        <th>Düzenle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LoginName</td>
+            <td>@item.LoginPassword</td>
+            <td><a href="#" class="btn btn-warning">Düzenle</a></td>
+        </tr>
+    }
+</table>

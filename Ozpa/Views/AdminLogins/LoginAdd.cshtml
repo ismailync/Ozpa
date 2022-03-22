@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.AdminLogin
+
+@{
+    ViewData["Title"] = "LoginAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Admin ekle</h1>
+<br />
+
+@using (Html.BeginForm("LoginAdd", "AdminLogins", FormMethod.Post))
+{
+    @Html.Label("Kullanıcı adı")
+    @Html.TextBoxFor(x => x.LoginName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.LoginName)
+    <br />
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.LoginPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.LoginPassword)
+    <br />
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+}
+

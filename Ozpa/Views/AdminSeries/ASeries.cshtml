@@ -1,8 +1,35 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Series>
 @{
     ViewData["Title"] = "ASeries";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h1>ASeries</h1>
-
+<h1>Seriler</h1>
+<br />
+<a href="SeriesAdd" class="btn btn-primary">Yeni Ekle</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Seri resim</th>
+        <th>Seri ad</th>
+        <th>Kategori id</th>
+        <th>Düzenle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a>
+                    <img src="@item.SeriesImage">
+                </a>
+            </td>
+            <td>@item.SeriesName</td>
+            <td>@item.CategoryId</td>
+            <td><a href="#" class="btn btn-warning">Düzenle</a></td>
+            <td><a href="#" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>

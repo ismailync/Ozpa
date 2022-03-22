@@ -1,0 +1,24 @@
+﻿@model EntityLayer.Concrete.Banner
+@{
+    ViewData["Title"] = "SliderAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Slider ekle</h1>
+<br />
+
+@using (Html.BeginForm("SliderAdd", "AdminSlider", FormMethod.Post))
+{
+    @Html.Label("Slider")
+    @Html.TextBoxFor(x => x.BannerImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BannerImage)
+    <br />
+    <br />
+    @Html.Label("Kategori id")
+    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryId)
+    <br />
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+}
+

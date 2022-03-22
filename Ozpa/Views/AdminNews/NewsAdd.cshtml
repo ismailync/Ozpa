@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Concrete.News
+
+@{
+    ViewData["Title"] = "NewsAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Haber ekle</h1>
+<br />
+
+@using (Html.BeginForm("NewsAdd", "AdminNews", FormMethod.Post))
+{
+    @Html.Label("Haber başlık")
+    @Html.TextBoxFor(x => x.NewsTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.NewsTitle)
+    <br />
+    <br />
+    @Html.Label("Haber açıklama")
+    @Html.TextBoxFor(x => x.NewsComment, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.NewsComment)
+    <br />
+    <br /> 
+    @Html.Label("Haber resim")
+    @Html.TextBoxFor(x => x.NewsImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.NewsImage)
+    <br />
+    <br />
+    <button class="btn btn-info">Kaydet</button>
+}
