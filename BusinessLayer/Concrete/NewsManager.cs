@@ -16,7 +16,7 @@ namespace BusinessLayer.Concrete
         {
             _newsDal = newsDal;
         }
-        public News GetById(int id)
+        public News TGetById(int id)
         {
             return _newsDal.GetByID(id);
         }

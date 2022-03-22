@@ -16,7 +16,7 @@ namespace BusinessLayer.Concrete
         {
             _bannerDal = bannerDal;
         }
-        public Banner GetById(int id)
+        public Banner TGetById(int id)
         {
             return _bannerDal.GetByID(id);
         }

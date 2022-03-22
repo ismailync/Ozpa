@@ -20,7 +20,12 @@ namespace Ozpa.Controllers.Admin
             var values = cm.GetList();
             return View(values);
         }
-
+        public IActionResult Delete(int id)
+        {
+            var value = cm.TGetById(id);
+            cm.TDelete(value);
+            return RedirectToAction("ACategory");
+        }
         [HttpGet]
         public IActionResult CategoryAdd()
         {

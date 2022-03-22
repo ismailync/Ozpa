@@ -16,7 +16,7 @@ namespace BusinessLayer.Concrete
         {
             _adminLoginDal = adminLoginDal;
         }
-        public AdminLogin GetById(int id)
+        public AdminLogin TGetById(int id)
         {
             return _adminLoginDal.GetByID(id);
         }

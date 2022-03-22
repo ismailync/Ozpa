@@ -14,7 +14,6 @@ namespace BusinessLayer.ValidationRules
         {
             RuleFor(x => x.SeriesImage).NotEmpty().WithMessage("Resmi boş bırakma!!");       
             RuleFor(x => x.SeriesName).NotEmpty().WithMessage("Adı boş bırakma!!");       
-            RuleFor(x => x.CategoryId).NotEmpty().WithMessage("Kategoriyi boş bırakma!!");       
         }
     }
 }

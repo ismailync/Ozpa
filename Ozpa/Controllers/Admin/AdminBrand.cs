@@ -20,6 +20,13 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
 
+        public IActionResult Delete(int id)
+        {
+            var value = cm.TGetById(id);
+            cm.TDelete(value);
+            return RedirectToAction("ABrand");
+        }
+
         [HttpGet]
         public IActionResult BrandAdd()
         {            
@@ -44,6 +51,18 @@ namespace Ozpa.Controllers.Admin
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditBrand(int id)
+        {
+            var values = cm.TGetById(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditBrand(Brand b)
+        {
+            return RedirectToAction("ABrand");
         }
     }
 }

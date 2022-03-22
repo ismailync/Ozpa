@@ -14,8 +14,8 @@
     @Html.ValidationMessageFor(x => x.BannerImage)
     <br />
     <br />
-    @Html.Label("Kategori id")
-    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })
+    @Html.Label("Kategori")
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class="form-control"})
     @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />

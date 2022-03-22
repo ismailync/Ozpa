@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,25 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
 
+        public IActionResult Delete(int id)
+        {
+            var value = cm.TGetById(id);
+            cm.TDelete(value);
+            return RedirectToAction("ASlider");
+        }
+
         [HttpGet]
         public IActionResult SliderAdd()
         {
+            CategoryManager bm = new CategoryManager(new EfCategoryRepository());
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
             return View();
         }
         [HttpPost]

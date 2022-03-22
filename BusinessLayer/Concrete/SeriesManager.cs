@@ -16,7 +16,7 @@ namespace BusinessLayer.Concrete
         {
             _seriesDal = seriesDal;
         }
-        public Series GetById(int id)
+        public Series TGetById(int id)
         {
             return _seriesDal.GetByID(id);
         }

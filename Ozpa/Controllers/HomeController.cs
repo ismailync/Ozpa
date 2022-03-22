@@ -25,7 +25,7 @@ namespace Ozpa.Controllers
         {
             _logger = logger;
         }
-
+        [HttpGet("/")]
         public IActionResult HomeIndex()
         {
             var mainModel = new MainModel();
