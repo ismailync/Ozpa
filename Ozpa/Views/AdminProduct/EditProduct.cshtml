@@ -1,14 +1,18 @@
 ﻿@model EntityLayer.Concrete.Product
+
 @{
-    ViewData["Title"] = "ProductAdd";
+    ViewData["Title"] = "EditProduct";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
-
-<h1>Ürün ekle</h1>
+<h1>Ürün düzenle</h1>
 <br />
 
-@using (Html.BeginForm("ProductAdd", "AdminProduct", FormMethod.Post))
+@using (Html.BeginForm("EditProduct", "AdminProduct", FormMethod.Post))
 {
+    @Html.Label("#")
+    @Html.TextBoxFor(x => x.ProductId, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <br />
     @Html.Label("Ürün adı")
     @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.ProductName)
@@ -53,5 +57,5 @@
     @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />
-    <button class="btn btn-info">Kaydet</button>
+    <button class="btn btn-success">Güncelle</button>
 }

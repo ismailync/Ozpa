@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Brand
+﻿@model Ozpa.Models.AddBrandImage
 @{
     ViewData["Title"] = "BrandAdd";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -7,18 +7,23 @@
 <h1>Marka ekle</h1>
 <br />
 
-@using (Html.BeginForm("BrandAdd", "AdminBrand", FormMethod.Post))
+@using (Html.BeginForm("BrandAdd", "AdminBrand", FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
-    @Html.Label("Marka adı")
-    @Html.TextBoxFor(x => x.BrandName , new {@class = "form-control"})
-    @Html.ValidationMessageFor(x => x.BrandName)
-<br />
-<br />
-    @Html.Label("Marka resmi")
-    @Html.TextBoxFor(x => x.BrandImage , new {@class = "form-control"})
-    @Html.ValidationMessageFor(x => x.BrandImage)
-<br />
-<br />
-<button class="btn btn-info">Kaydet</button>
+    <form  method="post" enctype="multipart/form-data">
+        @Html.Label("Marka adı")
+        @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.BrandName)
+        <br />
+        <br />
+        @Html.Label("Marka resmi")
+        <br />
+        <input type="file" name="BrandImage" />
+        <br />
+        @Html.ValidationMessageFor(x => x.BrandImage)
+        <br />
+        <br />
+
+        <button class="btn btn-info" type="submit">Kaydet</button>
+    </form>
 }
 

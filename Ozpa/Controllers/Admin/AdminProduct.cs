@@ -15,6 +15,9 @@ namespace Ozpa.Controllers.Admin
     public class AdminProduct : Controller
     {
         ProductManager cm = new ProductManager(new EfProductRepository());
+        CategoryManager km = new CategoryManager(new EfCategoryRepository());
+        BrandManager bm = new BrandManager(new EfBrandRepository());
+
 
         public IActionResult AProduct()
         {
@@ -31,27 +34,25 @@ namespace Ozpa.Controllers.Admin
         [HttpGet]
         public IActionResult ProductAdd()
         {
-            //CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-            //List<SelectListItem> categoryvalues = (from x in cm.GetList()
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.CategoryName,
-            //                                           Value = x.CategoryId.ToString()
-            //                                       }).ToList();
+            List<SelectListItem> categoryvalues = (from x in km.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
 
-            //ViewBag.cv = categoryvalues;
+            ViewBag.cv = categoryvalues;
 
-            //BrandManager bm = new BrandManager(new EfBrandRepository());
-            //List<SelectListItem> brandvalues = (from x in bm.GetList()
-            //                                       select new SelectListItem
-            //                                       {
-            //                                           Text = x.BrandName,
-            //                                           Value = x.BrandId.ToString()
-            //                                       }).ToList();
+            List<SelectListItem> brandvalues = (from x in bm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.BrandName,
+                                                    Value = x.BrandId.ToString()
+                                                }).ToList();
 
-            //ViewBag.cb = brandvalues;
+            ViewBag.cb = brandvalues;
 
-            
+
             return View();
         }
         [HttpPost]
@@ -72,6 +73,35 @@ namespace Ozpa.Controllers.Admin
                 }
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult EditProduct(int id)
+        {
+            var values = cm.TGetById(id);
+            List<SelectListItem> categoryvalues = (from x in km.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
+
+            List<SelectListItem> brandvalues = (from x in bm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.BrandName,
+                                                    Value = x.BrandId.ToString()
+                                                }).ToList();
+
+            ViewBag.cb = brandvalues;
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditProduct(Product b)
+        {
+            cm.TUpdate(b);
+            return RedirectToAction("AProduct");
         }
     }
 }

@@ -5,21 +5,27 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h1>Marka ekle</h1>
+<h1>Marka düzenle</h1>
 <br />
 
-@using (Html.BeginForm("EditBrand", "AdminBrand", FormMethod.Post))
+@using (Html.BeginForm("EditBrand", "AdminBrand", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.Label("#")
+    @Html.TextBoxFor(x => x.BrandId, new { @class = "form-control" })
+    <br />
+    <br />
     @Html.Label("Marka adı")
     @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.BrandName)
     <br />
     <br />
     @Html.Label("Marka resmi")
-    @Html.TextBoxFor(x => x.BrandImage, new { @class = "form-control" })
+    <br />
+    <input type="file" name="BrandImage" />
+    <br />
     @Html.ValidationMessageFor(x => x.BrandImage)
     <br />
     <br />
-    <button class="btn btn-info">Kaydet</button>
+    <button class="btn btn-success">Güncelle</button>
 }
 

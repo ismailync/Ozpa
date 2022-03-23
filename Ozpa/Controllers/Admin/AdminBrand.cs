@@ -4,8 +4,10 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Ozpa.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,19 +31,31 @@ namespace Ozpa.Controllers.Admin
 
         [HttpGet]
         public IActionResult BrandAdd()
-        {            
+        {
             return View();
         }
 
         [HttpPost]
-        public IActionResult BrandAdd(Brand b)
+        public IActionResult BrandAdd(AddBrandImage b)
         {
-            BrandValidator bv = new BrandValidator();
-            ValidationResult results = bv.Validate(b);
-            if (results.IsValid)
+            Brand br = new Brand();
+            if (b.BrandImage != null)
             {
-                cm.TAdd(b);
-                return RedirectToAction("ABrand","AdminBrand");
+                var extension = Path.GetExtension(b.BrandImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/BrandImage/" , newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BrandImage.CopyTo(stream);
+                br.BrandImage = "/Image/BrandImage/" +newimagename;
+            }
+            br.BrandName = b.BrandName;
+           
+            BrandValidator bv = new BrandValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {            
+                cm.TAdd(br);
+                return RedirectToAction("ABrand", "AdminBrand");
             }
             else
             {
@@ -60,8 +74,22 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditBrand(Brand b)
+        public IActionResult EditBrand(AddBrandImage b)
         {
+            Brand br = new Brand();
+            if (b.BrandImage != null)
+            {
+                var extension = Path.GetExtension(b.BrandImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/BrandImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BrandImage.CopyTo(stream);
+                br.BrandImage = "/Image/BrandImage/" + newimagename;
+            }
+            br.BrandId = b.BrandId;
+            br.BrandName = b.BrandName;
+
+            cm.TUpdate(br);
             return RedirectToAction("ABrand");
         }
     }

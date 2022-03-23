@@ -16,6 +16,7 @@ namespace Ozpa.Controllers.Admin
     public class AdminSeries : Controller
     {
         SeriesManager cm = new SeriesManager(new EfSeriesRepository());
+        CategoryManager bm = new CategoryManager(new EfCategoryRepository());
 
         public IActionResult ASeries()
         {
@@ -31,7 +32,6 @@ namespace Ozpa.Controllers.Admin
         [HttpGet]
         public IActionResult SeriesAdd()
         {
-            CategoryManager bm = new CategoryManager(new EfCategoryRepository());
             List<SelectListItem> categoryvalues = (from x in bm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -60,6 +60,26 @@ namespace Ozpa.Controllers.Admin
                 }
             }
             return View();
+        }
+        [HttpGet]
+        public IActionResult EditSeries(int id)
+        {
+            var values = cm.TGetById(id);
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditSeries(Series b)
+        {
+            cm.TUpdate(b);
+            return RedirectToAction("ASeries");
         }
     }
 }

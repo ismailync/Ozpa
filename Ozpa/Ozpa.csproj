@@ -26,4 +26,12 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Image\BrandImage\" />
+    <Folder Include="wwwroot\Image\NewsImage\" />
+    <Folder Include="wwwroot\Image\SliderImage\" />
+    <Folder Include="wwwroot\Image\SeriesImage\" />
+    <Folder Include="wwwroot\Image\ProductImage\" />
+  </ItemGroup>
+
 </Project>

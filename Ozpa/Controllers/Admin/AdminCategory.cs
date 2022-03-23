@@ -51,5 +51,18 @@ namespace Ozpa.Controllers.Admin
             }
             return View();
         }
+
+        [HttpGet]
+        public IActionResult EditCategory(int id)
+        {
+            var values = cm.TGetById(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditCategory(Category b)
+        {
+            cm.TUpdate(b);
+            return RedirectToAction("ACategory");
+        }
     }
 }

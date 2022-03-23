@@ -15,6 +15,7 @@ namespace Ozpa.Controllers.Admin
     public class AdminSlider : Controller
     {
         BannerManager cm = new BannerManager(new EfBannerRepository());
+        CategoryManager bm = new CategoryManager(new EfCategoryRepository());
 
         public IActionResult ASlider()
         {
@@ -32,7 +33,6 @@ namespace Ozpa.Controllers.Admin
         [HttpGet]
         public IActionResult SliderAdd()
         {
-            CategoryManager bm = new CategoryManager(new EfCategoryRepository());
             List<SelectListItem> categoryvalues = (from x in bm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -61,6 +61,27 @@ namespace Ozpa.Controllers.Admin
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditSlider(int id)
+        {
+            var values = cm.TGetById(id);
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditSlider(Banner b)
+        {
+            cm.TUpdate(b);
+            return RedirectToAction("ASlider");
         }
     }
 }

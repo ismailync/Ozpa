@@ -44,5 +44,17 @@ namespace Ozpa.Controllers.Admin
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult EditLogin(int id)
+        {
+            var values = lm.TGetById(id);
+            return View(values);
+        }
+        [HttpPost]
+        public IActionResult EditLogin(AdminLogin b)
+        {
+            lm.TUpdate(b);
+            return RedirectToAction("ALogin");
+        }
     }
 }
