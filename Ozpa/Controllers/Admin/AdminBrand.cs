@@ -89,8 +89,23 @@ namespace Ozpa.Controllers.Admin
             br.BrandId = b.BrandId;
             br.BrandName = b.BrandName;
 
-            cm.TUpdate(br);
-            return RedirectToAction("ABrand");
+
+            BrandValidator bv = new BrandValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {
+                cm.TUpdate(br);
+                return RedirectToAction("ABrand");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+            
         }
     }
 }

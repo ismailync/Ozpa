@@ -4,8 +4,10 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Ozpa.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,13 +35,26 @@ namespace Ozpa.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult NewsAdd(News b)
+        public IActionResult NewsAdd(AddNewsImage b)
         {
+            News br = new News();
+            if (b.NewsImage != null)
+            {
+                var extension = Path.GetExtension(b.NewsImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/NewsImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.NewsImage.CopyTo(stream);
+                br.NewsImage = "/Image/NewsImage/" + newimagename;
+            }
+            br.NewsTitle = b.NewsTitle;
+            br.NewsComment = b.NewsComment;
+
             NewsValidator bv = new NewsValidator();
-            ValidationResult results = bv.Validate(b);
+            ValidationResult results = bv.Validate(br);
             if (results.IsValid)
             {
-                cm.TAdd(b);
+                cm.TAdd(br);
                 return RedirectToAction("ANews", "AdminNews");
             }
             else
@@ -59,10 +74,38 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditNews(News b)
+        public IActionResult EditNews(AddNewsImage b)
         {
-            cm.TUpdate(b);
-            return RedirectToAction("ANews");
+            News br = new News();
+            if (b.NewsImage != null)
+            {
+                var extension = Path.GetExtension(b.NewsImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/NewsImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.NewsImage.CopyTo(stream);
+                br.NewsImage = "/Image/NewsImage/" + newimagename;
+            }
+            br.NewsId = b.NewsId;
+            br.NewsTitle = b.NewsTitle;
+            br.NewsComment = b.NewsComment;
+
+            NewsValidator bv = new NewsValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {
+                cm.TUpdate(br);
+                return RedirectToAction("ANews");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+           
         }
     }
 }

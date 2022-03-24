@@ -8,14 +8,16 @@
 <h1>Seri düzenle</h1>
 <br />
 
-@using (Html.BeginForm("EditSeries", "AdminSeries", FormMethod.Post))
+@using (Html.BeginForm("EditSeries", "AdminSeries", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.Label("#")
     @Html.TextBoxFor(x => x.SeriesId, new { @class = "form-control", @readonly = "readonly" })
     <br />
     <br />
     @Html.Label("Seri resim")
-    @Html.TextBoxFor(x => x.SeriesImage, new { @class = "form-control" })
+    <br />
+    <input type="file" name="SeriesImage" />
+    <br />
     @Html.ValidationMessageFor(x => x.SeriesImage)
     <br />
     <br />
@@ -26,6 +28,7 @@
     <br />
     @Html.Label("Kategori")
     @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />
     <button class="btn btn-success">Güncelle</button>

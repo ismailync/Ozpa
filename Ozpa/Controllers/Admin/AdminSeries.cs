@@ -6,8 +6,10 @@ using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Ozpa.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,13 +45,26 @@ namespace Ozpa.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public IActionResult SeriesAdd(Series b)
+        public IActionResult SeriesAdd(AddSeriesImage b)
         {
+            Series br = new Series();
+            if (b.SeriesImage != null)
+            {
+                var extension = Path.GetExtension(b.SeriesImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/SeriesImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.SeriesImage.CopyTo(stream);
+                br.SeriesImage = "/Image/SeriesImage/" + newimagename;
+            }
+            br.SeriesName = b.SeriesName;
+            br.CategoryId = b.CategoryId;
+
             SeriesValidator bv = new SeriesValidator();
-            ValidationResult results = bv.Validate(b);
+            ValidationResult results = bv.Validate(br);
             if (results.IsValid)
             {
-                cm.TAdd(b);
+                cm.TAdd(br);
                 return RedirectToAction("ASeries", "AdminSeries");
             }
             else
@@ -76,10 +91,38 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditSeries(Series b)
+        public IActionResult EditSeries(AddSeriesImage b)
         {
-            cm.TUpdate(b);
-            return RedirectToAction("ASeries");
+            Series br = new Series();
+            if (b.SeriesImage != null)
+            {
+                var extension = Path.GetExtension(b.SeriesImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/SeriesImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.SeriesImage.CopyTo(stream);
+                br.SeriesImage = "/Image/SeriesImage/" + newimagename;
+            }
+            br.SeriesId = b.SeriesId;
+            br.SeriesName = b.SeriesName;
+            br.CategoryId = b.CategoryId;
+
+            SeriesValidator bv = new SeriesValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {
+                cm.TUpdate(br);
+                return RedirectToAction("ASeries");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+            
         }
     }
 }

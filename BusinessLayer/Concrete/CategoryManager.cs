@@ -39,6 +39,6 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Category t)
         {
             _categoryDal.Update(t);
-        }
+        }  
     }
 }

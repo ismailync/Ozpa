@@ -61,8 +61,22 @@ namespace Ozpa.Controllers.Admin
         [HttpPost]
         public IActionResult EditCategory(Category b)
         {
-            cm.TUpdate(b);
-            return RedirectToAction("ACategory");
+            CategoryValidator bv = new CategoryValidator();
+            ValidationResult results = bv.Validate(b);
+            if (results.IsValid)
+            {
+                cm.TUpdate(b);
+                return RedirectToAction("ACategory");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+           
         }
     }
 }

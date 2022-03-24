@@ -11,7 +11,7 @@
 @using (Html.BeginForm("EditBrand", "AdminBrand", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.Label("#")
-    @Html.TextBoxFor(x => x.BrandId, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.BrandId, new { @class = "form-control", @readonly = "readonly" })
     <br />
     <br />
     @Html.Label("Marka adı")

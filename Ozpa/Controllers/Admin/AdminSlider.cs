@@ -5,8 +5,10 @@ using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Ozpa.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,13 +46,26 @@ namespace Ozpa.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public IActionResult SliderAdd(Banner b)
+        public IActionResult SliderAdd(AddSliderImage b)
         {
+            Banner br = new Banner();
+            if (b.BannerImage != null)
+            {
+                var extension = Path.GetExtension(b.BannerImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/SliderImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BannerImage.CopyTo(stream);
+                br.BannerImage = "/Image/SliderImage/" + newimagename;
+            }
+            br.CategoryId = b.CategoryId;
+
+
             BannerValidator bv = new BannerValidator();
-            ValidationResult results = bv.Validate(b);
+            ValidationResult results = bv.Validate(br);
             if (results.IsValid)
             {
-                cm.TAdd(b);
+                cm.TAdd(br);
                 return RedirectToAction("ASlider", "AdminSlider");
             }
             else
@@ -78,10 +93,37 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditSlider(Banner b)
+        public IActionResult EditSlider(AddSliderImage b)
         {
-            cm.TUpdate(b);
-            return RedirectToAction("ASlider");
+            Banner br = new Banner();
+            if (b.BannerImage != null)
+            {
+                var extension = Path.GetExtension(b.BannerImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/SliderImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BannerImage.CopyTo(stream);
+                br.BannerImage = "/Image/SliderImage/" + newimagename;
+            }
+            br.BannerId = b.BannerId;
+            br.CategoryId = b.CategoryId;
+
+            BannerValidator bv = new BannerValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {
+                cm.TUpdate(br);
+                return RedirectToAction("ASlider");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+
         }
     }
 }

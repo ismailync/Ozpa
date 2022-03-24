@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Banner
+﻿@model Ozpa.Models.AddSliderImage
 @{
     ViewData["Title"] = "SliderAdd";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -7,18 +7,22 @@
 <h1>Slider ekle</h1>
 <br />
 
-@using (Html.BeginForm("SliderAdd", "AdminSlider", FormMethod.Post))
+@using (Html.BeginForm("SliderAdd", "AdminSlider", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+<form method="post" enctype="multipart/form-data">
     @Html.Label("Slider")
-    @Html.TextBoxFor(x => x.BannerImage, new { @class = "form-control" })
+    <br />
+    <input type="file" name="BannerImage" />
+    <br />
     @Html.ValidationMessageFor(x => x.BannerImage)
     <br />
     <br />
     @Html.Label("Kategori")
-    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class="form-control"})
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />
-    <button class="btn btn-info">Kaydet</button>
+    <button class="btn btn-info" type="submit">Kaydet</button>
+</form>
 }
 

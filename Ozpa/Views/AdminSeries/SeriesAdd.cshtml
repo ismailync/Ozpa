@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Series
+﻿@model Ozpa.Models.AddSeriesImage
 
 @{
     ViewData["Title"] = "SeriesAdd";
@@ -8,22 +8,27 @@
 <h1>Seri ekle</h1>
 <br />
 
-@using (Html.BeginForm("SeriesAdd", "AdminSeries", FormMethod.Post))
+@using (Html.BeginForm("SeriesAdd", "AdminSeries", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("Seri resim")
-    @Html.TextBoxFor(x => x.SeriesImage, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.SeriesImage)
-    <br />
-    <br />
-    @Html.Label("Seri ad")
-    @Html.TextBoxFor(x => x.SeriesName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.SeriesName)
-    <br />
-    <br />
-    @Html.Label("Kategori")
-    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
-    <br />
-    <br />
-    <button class="btn btn-info">Kaydet</button>
+    <form method="post" enctype="multipart/form-data">
+        @Html.Label("Seri resim")
+        <br />
+        <input type="file" name="SeriesImage" />
+        <br />
+        @Html.ValidationMessageFor(x => x.SeriesImage)
+        <br />
+        <br />
+        @Html.Label("Seri ad")
+        @Html.TextBoxFor(x => x.SeriesName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SeriesName)
+        <br />
+        <br />
+        @Html.Label("Kategori")
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryId)
+        <br />
+        <br />
+        <button class="btn btn-info" type="submit">Kaydet</button>
+    </form>
 }
 

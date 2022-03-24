@@ -5,8 +5,10 @@ using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Ozpa.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,13 +58,29 @@ namespace Ozpa.Controllers.Admin
             return View();
         }
         [HttpPost]
-        public IActionResult ProductAdd(Product b)
+        public IActionResult ProductAdd(AddProductImage b)
         {
+            Product br = new Product();
+            if (b.ProductImage != null)
+            {
+                var extension = Path.GetExtension(b.ProductImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/ProductImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.ProductImage.CopyTo(stream);
+                br.ProductImage = "/Image/ProductImage/" + newimagename;
+            }
+            br.BrandId = b.BrandId;
+            br.CategoryId = b.CategoryId;
+            br.ProductComment = b.ProductComment;
+            br.ProductName = b.ProductName;
+            br.ProductTrend = b.ProductTrend;
+
             ProductValidator bv = new ProductValidator();
-            ValidationResult results = bv.Validate(b);
+            ValidationResult results = bv.Validate(br);
             if (results.IsValid)
             {
-                cm.TAdd(b);
+                cm.TAdd(br);
                 return RedirectToAction("AProduct", "AdminProduct");
             }
             else
@@ -98,10 +116,41 @@ namespace Ozpa.Controllers.Admin
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditProduct(Product b)
+        public IActionResult EditProduct(AddProductImage b)
         {
-            cm.TUpdate(b);
-            return RedirectToAction("AProduct");
+            Product br = new Product();
+            if (b.ProductImage != null)
+            {
+                var extension = Path.GetExtension(b.ProductImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/ProductImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.ProductImage.CopyTo(stream);
+                br.ProductImage = "/Image/ProductImage/" + newimagename;
+            }
+            br.ProductId = b.ProductId;
+            br.BrandId = b.BrandId;
+            br.CategoryId = b.CategoryId;
+            br.ProductComment = b.ProductComment;
+            br.ProductName = b.ProductName;
+            br.ProductTrend = b.ProductTrend;
+
+            ProductValidator bv = new ProductValidator();
+            ValidationResult results = bv.Validate(br);
+            if (results.IsValid)
+            {
+                cm.TUpdate(br);
+                return RedirectToAction("AProduct");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+           
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿@model EntityLayer.Concrete.News
-
+﻿@model Ozpa.Models.AddNewsImage
 @{
     ViewData["Title"] = "NewsAdd";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
@@ -8,23 +7,26 @@
 <h1>Haber ekle</h1>
 <br />
 
-@using (Html.BeginForm("NewsAdd", "AdminNews", FormMethod.Post))
+@using (Html.BeginForm("NewsAdd", "AdminNews", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("Haber başlık")
-    @Html.TextBoxFor(x => x.NewsTitle, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.NewsTitle)
-    <br />
-    <br />
-    @Html.Label("Haber açıklama")
-    @Html.TextAreaFor(x => x.NewsComment, 10, 5, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.NewsComment)
-    <br />
-    <br />
-
-    @Html.Label("Haber resim")
-    @Html.TextBoxFor(x => x.NewsImage, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.NewsImage)
-    <br />
-    <br />
-    <button class="btn btn-info">Kaydet</button>
+    <form method="post" enctype="multipart/form-data">
+        @Html.Label("Haber başlık")
+        @Html.TextBoxFor(x => x.NewsTitle, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NewsTitle)
+        <br />
+        <br />
+        @Html.Label("Haber açıklama")
+        @Html.TextAreaFor(x => x.NewsComment, 10, 5, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.NewsComment)
+        <br />
+        <br />
+        @Html.Label("Haber resim")
+        <br />
+        <input type="file" name="NewsImage" />
+        <br />
+        @Html.ValidationMessageFor(x => x.NewsImage)
+        <br />
+        <br />
+        <button class="btn btn-info" type="submit">Kaydet</button>
+    </form>
 }

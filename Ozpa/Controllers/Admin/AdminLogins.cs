@@ -53,8 +53,21 @@ namespace Ozpa.Controllers.Admin
         [HttpPost]
         public IActionResult EditLogin(AdminLogin b)
         {
-            lm.TUpdate(b);
-            return RedirectToAction("ALogin");
+            AdminLoginValidator lv = new AdminLoginValidator();
+            ValidationResult results = lv.Validate(b);
+            if (results.IsValid)
+            {
+                lm.TUpdate(b);
+                return RedirectToAction("ALogin");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
         }
     }
 }

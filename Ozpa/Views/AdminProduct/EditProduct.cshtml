@@ -7,7 +7,7 @@
 <h1>Ürün düzenle</h1>
 <br />
 
-@using (Html.BeginForm("EditProduct", "AdminProduct", FormMethod.Post))
+@using (Html.BeginForm("EditProduct", "AdminProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.Label("#")
     @Html.TextBoxFor(x => x.ProductId, new { @class = "form-control", @readonly = "readonly" })
@@ -19,13 +19,14 @@
     <br />
     <br />
     @Html.Label("Ürün resim")
-    @Html.TextBoxFor(x => x.ProductImage, new { @class = "form-control" })
+    <br />
+    <input type="file" name="ProductImage" />
+    <br />
     @Html.ValidationMessageFor(x => x.ProductImage)
     <br />
     <br />
     @Html.Label("Ürün açıklama")
     @Html.TextAreaFor(x => x.ProductComment, 10, 5, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ProductComment)
     <br />
     <br />
     @Html.Label("Trend")
@@ -33,28 +34,25 @@
         new List<SelectListItem> {
             new SelectListItem {
                Text="True",
-               Value="1",
+               Value="True",
 
             },
             new SelectListItem {
                Text="False",
-               Value="0",
+               Value="False",
             },
         }, new { @class = "form-control" })
     @*@Html.TextBoxFor(x => x.ProductTrend, new { @class = "form-control" })*@
-    @Html.ValidationMessageFor(x => x.ProductTrend)
     <br />
     <br />
     @Html.Label("Marka")
     @Html.DropDownListFor(x => x.BrandId, (List<SelectListItem>)ViewBag.cb, new { @class = "form-control" })
     @*@Html.TextBoxFor(x => x.BrandId, new { @class = "form-control" })*@
-    @Html.ValidationMessageFor(x => x.BrandId)
     <br />
     <br />
     @Html.Label("Kategori")
     @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
     @*@Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control" })*@
-    @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />
     <button class="btn btn-success">Güncelle</button>

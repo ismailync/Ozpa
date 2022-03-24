@@ -13,7 +13,8 @@ namespace BusinessLayer.ValidationRules
         public SeriesValidator()
         {
             RuleFor(x => x.SeriesImage).NotEmpty().WithMessage("Resmi boş bırakma!!");       
-            RuleFor(x => x.SeriesName).NotEmpty().WithMessage("Adı boş bırakma!!");       
+            RuleFor(x => x.SeriesName).NotEmpty().WithMessage("Adı boş bırakma!!");
+            RuleFor(x => x.CategoryId.ToString()).NotEmpty().WithMessage("Kategoriyi boş bırakma");       
         }
     }
 }
