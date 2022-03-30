@@ -13,7 +13,7 @@ namespace BusinessLayer.ValidationRules
         public BannerValidator()
         {
             RuleFor(x => x.BannerImage).NotEmpty().WithMessage("Resmi boş bırakma!!");
-            RuleFor(x => x.CategoryId).NotNull().WithMessage("Resmi boş bırakma!!");  
+            RuleFor(x => x.CategoryId).NotNull().WithMessage("Kategoriyi boş bırakma!!");  
         }
     }
 }

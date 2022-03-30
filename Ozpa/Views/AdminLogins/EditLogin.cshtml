@@ -10,10 +10,7 @@
 
 @using (Html.BeginForm("EditLogin", "AdminLogins", FormMethod.Post))
 {
-    @Html.Label("#")
-    @Html.TextBoxFor(x => x.LoginID, new { @class = "form-control", @readonly = "readonly" })
-    <br />
-    <br />
+    @Html.HiddenFor(x => x.LoginID)
     @Html.Label("Kullanıcı adı")
     @Html.TextBoxFor(x => x.LoginName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.LoginName)

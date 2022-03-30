@@ -12,5 +12,6 @@ namespace Ozpa.Models
         public string NewsTitle { get; set; }
         public IFormFile NewsImage { get; set; }
         public string NewsComment { get; set; }
+        public string Path { get; set; }
     }
 }

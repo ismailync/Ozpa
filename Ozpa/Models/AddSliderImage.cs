@@ -11,5 +11,6 @@ namespace Ozpa.Models
         public int BannerId { get; set; }
         public IFormFile BannerImage { get; set; }
         public int CategoryId { get; set; }
+        public string Path { get; set; }
     }
 }

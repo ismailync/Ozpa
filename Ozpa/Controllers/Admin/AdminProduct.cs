@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ozpa.Models;
@@ -19,7 +20,12 @@ namespace Ozpa.Controllers.Admin
         ProductManager cm = new ProductManager(new EfProductRepository());
         CategoryManager km = new CategoryManager(new EfCategoryRepository());
         BrandManager bm = new BrandManager(new EfBrandRepository());
+        private readonly IHostingEnvironment _hostingEnvironment;
 
+        public AdminProduct(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public IActionResult AProduct()
         {
@@ -30,6 +36,9 @@ namespace Ozpa.Controllers.Admin
         {
             var value = cm.TGetById(id);
             cm.TDelete(value);
+            var filePath = _hostingEnvironment.WebRootPath + value.ProductImage;
+            FileInfo fi = new FileInfo(filePath);
+            fi.Delete();
             return RedirectToAction("AProduct");
         }
 
@@ -69,6 +78,7 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.ProductImage.CopyTo(stream);
                 br.ProductImage = "/Image/ProductImage/" + newimagename;
+                stream.Close();
             }
             br.BrandId = b.BrandId;
             br.CategoryId = b.CategoryId;
@@ -90,6 +100,23 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> categoryvalues = (from x in km.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
+
+            List<SelectListItem> brandvalues = (from x in bm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.BrandName,
+                                                    Value = x.BrandId.ToString()
+                                                }).ToList();
+
+            ViewBag.cb = brandvalues;
             return View();
         }
         [HttpGet]
@@ -113,13 +140,16 @@ namespace Ozpa.Controllers.Admin
                                                 }).ToList();
 
             ViewBag.cb = brandvalues;
+
+            ViewBag.ProductImage = values.ProductImage;
+            ViewBag.Path = values.ProductImage;
             return View(values);
         }
         [HttpPost]
         public IActionResult EditProduct(AddProductImage b)
         {
             Product br = new Product();
-            if (b.ProductImage != null)
+            if (b.Path == null || b.ProductImage != null)
             {
                 var extension = Path.GetExtension(b.ProductImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
@@ -134,7 +164,7 @@ namespace Ozpa.Controllers.Admin
             br.ProductComment = b.ProductComment;
             br.ProductName = b.ProductName;
             br.ProductTrend = b.ProductTrend;
-
+            br.ProductImage = b.Path;
             ProductValidator bv = new ProductValidator();
             ValidationResult results = bv.Validate(br);
             if (results.IsValid)
@@ -149,6 +179,23 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> categoryvalues = (from x in km.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
+
+            List<SelectListItem> brandvalues = (from x in bm.GetList()
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.BrandName,
+                                                    Value = x.BrandId.ToString()
+                                                }).ToList();
+
+            ViewBag.cb = brandvalues;
             return View();
            
         }

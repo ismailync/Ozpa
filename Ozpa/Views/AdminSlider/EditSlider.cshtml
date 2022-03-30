@@ -10,11 +10,12 @@
 
 @using (Html.BeginForm("EditSlider", "AdminSlider", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("#")
-    @Html.TextBoxFor(x => x.BannerId, new { @class = "form-control", @readonly = "readonly" })
+    @Html.HiddenFor(x => x.BannerId)
+    @Html.Hidden("Path", (string)ViewBag.Path)
+    @Html.Label("Resim")
     <br />
+    <img src="@ViewBag.BannerImage" width="400" height="200" />
     <br />
-    @Html.Label("Slider")
     <br />
     <input type="file" name="BannerImage" />
     <br />
@@ -23,6 +24,7 @@
     <br />
     @Html.Label("Kategori")
     @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.cv, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryId)
     <br />
     <br />
     <button class="btn btn-success">Güncelle</button>

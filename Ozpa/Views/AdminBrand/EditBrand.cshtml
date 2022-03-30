@@ -10,16 +10,18 @@
 
 @using (Html.BeginForm("EditBrand", "AdminBrand", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("#")
-    @Html.TextBoxFor(x => x.BrandId, new { @class = "form-control", @readonly = "readonly" })
-    <br />
-    <br />
+    @Html.HiddenFor(x => x.BrandId)
+    @Html.Hidden("Path", (string)ViewBag.Path)
+
     @Html.Label("Marka adı")
     @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.BrandName)
     <br />
     <br />
     @Html.Label("Marka resmi")
+    <br />
+    <img src="@ViewBag.BrandImage" width="400" height="200" />
+    <br />
     <br />
     <input type="file" name="BrandImage" />
     <br />

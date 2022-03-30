@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public string BannerImage { get; set; }
 
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
     }
 }

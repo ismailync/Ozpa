@@ -12,6 +12,7 @@ namespace Ozpa.Models
         public IFormFile SeriesImage { get; set; }
         public string SeriesName { get; set; }
         public int CategoryId { get; set; }
+        public string Path { get; set; }
 
     }
 }

@@ -10,10 +10,8 @@
 
 @using (Html.BeginForm("EditNews", "AdminNews", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("#")
-    @Html.TextBoxFor(x => x.NewsId, new { @class = "form-control", @readonly = "readonly" })
-    <br />
-    <br />
+    @Html.HiddenFor(x => x.NewsId)
+    @Html.Hidden("Path", (string)ViewBag.Path)
     @Html.Label("Haber başlık")
     @Html.TextBoxFor(x => x.NewsTitle, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.NewsTitle)
@@ -24,8 +22,10 @@
     @Html.ValidationMessageFor(x => x.NewsComment)
     <br />
     <br />
-
     @Html.Label("Haber resim")
+    <br />
+    <img src="@ViewBag.NewsImage" width="400" height="200" />
+    <br />
     <br />
     <input type="file" name="NewsImage" />
     <br />

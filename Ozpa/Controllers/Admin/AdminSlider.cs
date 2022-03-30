@@ -3,6 +3,8 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Grpc.Core;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ozpa.Models;
@@ -17,7 +19,13 @@ namespace Ozpa.Controllers.Admin
     public class AdminSlider : Controller
     {
         BannerManager cm = new BannerManager(new EfBannerRepository());
-        CategoryManager bm = new CategoryManager(new EfCategoryRepository());
+        CategoryManager bm = new CategoryManager(new EfCategoryRepository()); 
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public AdminSlider(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public IActionResult ASlider()
         {
@@ -29,6 +37,10 @@ namespace Ozpa.Controllers.Admin
         {
             var value = cm.TGetById(id);
             cm.TDelete(value);
+
+            var filePath = _hostingEnvironment.WebRootPath + value.BannerImage;
+            FileInfo fi = new FileInfo(filePath);
+            fi.Delete();
             return RedirectToAction("ASlider");
         }
 
@@ -57,6 +69,7 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.BannerImage.CopyTo(stream);
                 br.BannerImage = "/Image/SliderImage/" + newimagename;
+                stream.Close();
             }
             br.CategoryId = b.CategoryId;
 
@@ -75,13 +88,6 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult EditSlider(int id)
-        {
-            var values = cm.TGetById(id);
             List<SelectListItem> categoryvalues = (from x in bm.GetList()
                                                    select new SelectListItem
                                                    {
@@ -90,13 +96,32 @@ namespace Ozpa.Controllers.Admin
                                                    }).ToList();
 
             ViewBag.cv = categoryvalues;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult EditSlider(int id)
+        {
+            var values = cm.TGetById(id);
+       
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+
+            ViewBag.cv = categoryvalues;
+            ViewBag.BannerImage = values.BannerImage;
+            ViewBag.Path = values.BannerImage;
             return View(values);
         }
         [HttpPost]
         public IActionResult EditSlider(AddSliderImage b)
         {
             Banner br = new Banner();
-            if (b.BannerImage != null)
+            if (b.Path == null || b.BannerImage != null)
             {
                 var extension = Path.GetExtension(b.BannerImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
@@ -104,10 +129,12 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.BannerImage.CopyTo(stream);
                 br.BannerImage = "/Image/SliderImage/" + newimagename;
+                b.Path = br.BannerImage;
+                stream.Close();
             }
             br.BannerId = b.BannerId;
             br.CategoryId = b.CategoryId;
-
+            br.BannerImage = b.Path;
             BannerValidator bv = new BannerValidator();
             ValidationResult results = bv.Validate(br);
             if (results.IsValid)
@@ -122,6 +149,14 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
             return View();
 
         }

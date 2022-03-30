@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ozpa.Models;
@@ -19,7 +20,12 @@ namespace Ozpa.Controllers.Admin
     {
         SeriesManager cm = new SeriesManager(new EfSeriesRepository());
         CategoryManager bm = new CategoryManager(new EfCategoryRepository());
+        private readonly IHostingEnvironment _hostingEnvironment;
 
+        public AdminSeries(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
         public IActionResult ASeries()
         {
             var values = cm.GetList();
@@ -29,6 +35,10 @@ namespace Ozpa.Controllers.Admin
         {
             var value = cm.TGetById(id);
             cm.TDelete(value);
+
+            var filePath = _hostingEnvironment.WebRootPath + value.SeriesImage;
+            FileInfo fi = new FileInfo(filePath);
+            fi.Delete();
             return RedirectToAction("ASeries");
         }
         [HttpGet]
@@ -56,6 +66,7 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.SeriesImage.CopyTo(stream);
                 br.SeriesImage = "/Image/SeriesImage/" + newimagename;
+                stream.Close();
             }
             br.SeriesName = b.SeriesName;
             br.CategoryId = b.CategoryId;
@@ -74,6 +85,14 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
             return View();
         }
         [HttpGet]
@@ -88,13 +107,15 @@ namespace Ozpa.Controllers.Admin
                                                    }).ToList();
 
             ViewBag.cv = categoryvalues;
+            ViewBag.SeriesImage = values.SeriesImage;
+            ViewBag.Path = values.SeriesImage;
             return View(values);
         }
         [HttpPost]
         public IActionResult EditSeries(AddSeriesImage b)
         {
             Series br = new Series();
-            if (b.SeriesImage != null)
+            if (b.Path == null || b.SeriesImage != null)
             {
                 var extension = Path.GetExtension(b.SeriesImage.FileName);
                 var newimagename = Guid.NewGuid() + extension;
@@ -102,10 +123,13 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.SeriesImage.CopyTo(stream);
                 br.SeriesImage = "/Image/SeriesImage/" + newimagename;
+                b.Path = br.SeriesImage;
+                stream.Close();
             }
             br.SeriesId = b.SeriesId;
             br.SeriesName = b.SeriesName;
             br.CategoryId = b.CategoryId;
+            br.SeriesImage = b.Path;
 
             SeriesValidator bv = new SeriesValidator();
             ValidationResult results = bv.Validate(br);
@@ -121,6 +145,14 @@ namespace Ozpa.Controllers.Admin
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
+            List<SelectListItem> categoryvalues = (from x in bm.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+
+            ViewBag.cv = categoryvalues;
             return View();
             
         }

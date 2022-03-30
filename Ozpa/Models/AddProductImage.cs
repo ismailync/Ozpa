@@ -18,5 +18,8 @@ namespace Ozpa.Models
         public int CategoryId { get; set; }
         public int BrandId { get; set; }
 
+        public string Path { get; set; }
+
+
     }
 }
