@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Ozpa.Models;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Ozpa.Controllers.Admin
 {
+    [Authorize]
     public class AdminNews : Controller
     {
         NewsManager cm = new NewsManager(new EfNewsRepository());

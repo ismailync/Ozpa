@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace Ozpa.Controllers.Admin
 {
+    [Authorize]
     public class AdminSlider : Controller
     {
         BannerManager cm = new BannerManager(new EfBannerRepository());

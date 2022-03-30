@@ -4,6 +4,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace Ozpa.Controllers.Admin
 {
+    [Authorize]
     public class AdminSeries : Controller
     {
         SeriesManager cm = new SeriesManager(new EfSeriesRepository());
