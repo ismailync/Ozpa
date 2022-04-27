@@ -1,5 +1,4 @@
-﻿@using EntityLayer.Concrete
-@model List<About>
+﻿
 @{
     ViewData["Title"] = "AboutIndex";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -8,26 +7,36 @@
     <div class="main-wrapper wrapper-boxed_layout">
         <div class="col-12 mt-5">
             <div class="section-title">
-                <h3 class="heading">Hakkımızda</h3>
+                <h3 class="heading">ÖZPA KOZMETİK</h3>
             </div>
         </div>
         <!-- Begin Banner With Text Area -->
-        @foreach (var item in Model)
-        {
             <div class="main-content_area mb-5 mt-5">
                 <div class="banner-with_text overflow-hidden">
                     <div class="container-fluid p-0">
                         <div class="row">
                             <div class="col">
                                 <div class="text-area">
-                                    <h2 class="heading">@item.AboutTitle</h2>
-                                    <p class="short-desc pearl-text_color">@item.AboutComment</p>
+                                    <p class="short-desc pearl-text_color text-center">
+                                        Özpa Kozmetik 1994 yılında kozmetik sektöründe faaliyete başlayan 25 yılı aşan kurumsal
+                                        ticari geleneğe sahip bir firmadır. Özpa başlangiçta toptan kozmetik alım, satım ve dağıtım olan
+                                        faaliyetlerini bugün üretime odaklı olarak sürdürmektedir. Özpa'nın ticari markası Riposte Parfüm geniş
+                                        bir ürün gamına sahiptir. Bu ürünler parfüm dünyasında tüketicinin tanıdığı ve tercih ettiği ürünlerdir.<br><br>
+                                        Riposte Markası ile yurt dışı pazarlara distirübütörlerimiz aracılığı ile ulaşmış durumdayız.
+                                        İstanbul merkezli olan firmamız organize sanayi bölgesinde son sistem makinalarla ve sürekli gelişme
+                                        kabiliyetine sahip bir tesis kurmuştur. Fabrikamız ile üretim ve ürün kalitesini ve kapasitesini
+                                        ileri bir noktaya taşımıştır. Güvenilirlik ve “kazan, kazandır" ilkesi ile hareket eden
+                                        Özpa Kozmetik Türkiye ve yurt dışında oluşmuş perakendeci müşterilerine, Türkiye ve Dünya
+                                        parfüm sektörüne değer sunmaktadır. Özpa ve paydaşı olan perakendeci müşterilerimizle birlikte
+                                        tüketicinin güvenini ve beğenisini arttırmayı, müşteri memnuniyeti sağlayarak büyümeyi sürdüreceğiz.<br><br>
+                                        Saygılarımızla<br>
+                                        Özpa Kozmetik Teks. İnş. San. ve Dış Tic. Itd. Şti.
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
     </div>
 </body>

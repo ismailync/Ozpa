@@ -3,6 +3,9 @@
     ViewData["Title"] = "ProductDetailsIndex";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
+<!doctype html>
+<html class="no-js" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body class="template-color-5 font-family-02">
     <div class="main-wrapper wrapper-boxed_layout">
@@ -10,7 +13,7 @@
         <div class="main-content_area">
             <div class="banner-with_text banner-with_text-2 overflow-hidden pt-160 mb-5">
                 <div class="container-fluid p-0">
-                    <div class="row">                     
+                    <div class="row">
                         <!-- Begin Banner With Text Area -->
                         @foreach (var item in Model)
                         {
@@ -39,3 +42,4 @@
     </div>
 </body>
 
+</html>
