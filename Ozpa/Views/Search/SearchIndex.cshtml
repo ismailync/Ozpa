@@ -1,0 +1,50 @@
+﻿@using EntityLayer.Concrete
+@model List<Product>
+@{
+    ViewData["Title"] = "SearchIndex";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<!doctype html>
+<html class="no-js" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<form methord="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+    <hr />
+</form>
+<div>
+    <input id="search" />
+    <button onclick="search()">search</button>
+</div>
+<table class="table">
+    <tr>
+        <th>Resim</th>
+        <th>Ad</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                    <img width="60" height="80" src="@item.ProductImage">
+                </a>
+            </td>
+            <td>@item.ProductName</td>
+
+        </tr>
+    }
+</table>
+
+<script>
+    function search() {
+        $("tr").each(function (index, value) {
+            if (index > 0 && !$(this).find("td")[0].innerText.includes($("#search").val())) {
+                $(this).attr("hidden", true);
+            } else {
+                $(this).removeAttr("hidden");
+            }
+            console.log(value);
+        })
+    }
+</script>
+</html>

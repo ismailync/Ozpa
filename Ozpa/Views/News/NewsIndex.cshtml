@@ -12,7 +12,7 @@
     <div class="main-wrapper wrapper-boxed_layout">
         <!-- Begin Main Content Area -->
         <div class="main-content_area">
-            <div class="col-12 mt-5">
+            <div class="col-12 mt-5 mb-5">
                 <div class="section-title">
                     <h3 class="heading">Haberler & Duyurular</h3>
                 </div>
@@ -20,7 +20,7 @@
             <!-- Begin Banner With Text Area -->
             @foreach (var item in Model)
             {
-                @if (item.NewsId % 2 == 1)
+                @*@if (item.NewsId % 2 == 1)
                 {
                     <div class="banner-with_text overflow-hidden pt-160">
                         <div class="container-fluid p-0">
@@ -41,17 +41,17 @@
                     </div>
                 }
                 else
-                {
-                    <div class="banner-with_text banner-with_text-2 overflow-hidden pt-160 mb-5">
+                {*@
+                    <div class="banner-with_text banner-with_text-2 overflow-hidden pt-30 mb-5">
                         <div class="container-fluid p-0">
                             <div class="row">
                                 <div class="col-lg-6 mt-2 mb-2">
-                                    <div class="banner-area pt-md-90">
+                                    <div class="banner-area pt-md-30">
                                         <img class="w-100" src="@item.NewsImage" alt="Quicky's Banner">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mt-2 mb-2">
-                                    <div class="text-area pt-md-155">
+                                <div class="col-lg-6 mb-2">
+                                    <div class="text-area pt-md-90">
                                         <h2 class="heading">@item.NewsTitle</h2>
                                         <p class="short-desc pearl-text_color">@item.NewsComment</p>
                                     </div>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                }
+                @*}*@
             }
         </div>
         <!-- Main Content Area End Here -->
