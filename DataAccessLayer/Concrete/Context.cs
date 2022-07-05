@@ -13,6 +13,7 @@ namespace DataAccessLayer.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("server=DESKTOP-1N40TLD; database=OzpaCosmeticDb; integrated security=true;");
+            //optionsBuilder.UseSqlServer("Data Source=94.73.145.4;Initial Catalog=u9582252_Ozpa; User Id=u9582252_ozpa;Password=LRso54G8HSzh20S;");
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }
