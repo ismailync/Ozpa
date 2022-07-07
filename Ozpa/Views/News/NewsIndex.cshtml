@@ -18,9 +18,12 @@
                 </div>
             </div>
             <!-- Begin Banner With Text Area -->
-            @foreach (var item in Model)
+
+
+            @for (int i = 0; i < Model.Count; i++)
             {
-                @*@if (item.NewsId % 2 == 1)
+                var item = Model[i];
+                @if (i % 2 == 1)
                 {
                     <div class="banner-with_text overflow-hidden pt-160">
                         <div class="container-fluid p-0">
@@ -41,7 +44,7 @@
                     </div>
                 }
                 else
-                {*@
+                {
                     <div class="banner-with_text banner-with_text-2 overflow-hidden pt-30 mb-5">
                         <div class="container-fluid p-0">
                             <div class="row">
@@ -59,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                @*}*@
+                }
             }
         </div>
         <!-- Main Content Area End Here -->
