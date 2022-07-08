@@ -6127,18 +6127,18 @@ i, .tab-content .tab-pane.active, .scroll-to-top i, .quantity .cart-plus-minus >
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    min-height: 755px;
+    min-height: 0px;
 }
 
 @media (max-width: 1199px) {
     .bg-1 {
-        min-height: 450px;
+        min-height: 0px;
     }
 }
 
 @media (max-width: 479px) {
     .bg-1 {
-        min-height: 380px;
+        min-height: 0px;
     }
 }
 
