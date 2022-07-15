@@ -15,13 +15,11 @@ namespace DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("server=DESKTOP-1N40TLD; database=OzpaCosmeticDb; integrated security=true;");
             //optionsBuilder.UseSqlServer("Data Source=94.73.145.4;Initial Catalog=u9582252_Ozpa; User Id=u9582252_ozpa;Password=LRso54G8HSzh20S;");
         }
-        public DbSet<About> Abouts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Series> Series { get; set; }
         public DbSet<AdminLogin> AdminLogins { get; set; }
 
     }

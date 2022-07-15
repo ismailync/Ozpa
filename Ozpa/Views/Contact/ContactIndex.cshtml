@@ -106,7 +106,7 @@
                 zoom: 12,
                 scrollwheel: false,
                 // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(40.740610, -73.935242), // New York
+                center: new google.maps.LatLng(41.06563248869963, 28.81739205321787), // New York
                 // How you would like to style the map.
                 // This is where you would paste any style found on
                 styles: [{
@@ -277,12 +277,13 @@
             var map = new google.maps.Map(mapElement, mapOptions);
             // Let's also add a marker while we're at it
             var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(40.740610, -73.935242),
+                position: new google.maps.LatLng(41.06563248869963, 28.81739205321787),
                 map: map,
                 title: 'Kenne',
                 animation: google.maps.Animation.BOUNCE
             });
         }
+        
     </script>
 
 </body>

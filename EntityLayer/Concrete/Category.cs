@@ -12,7 +12,8 @@ namespace EntityLayer.Concrete
         [Key]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int? CategoryParentId { get; set; }
-
+        public string CategorySeriesImage { get; set; }
+        public string CategoryImage { get; set; }
+        public bool CategorySeries { get; set; }
     }
 }

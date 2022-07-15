@@ -13,6 +13,7 @@ namespace BusinessLayer.ValidationRules
         public BrandValidator()
         {
             RuleFor(x => x.BrandImage).NotEmpty().WithMessage("Resmi boş bırakma!!");
+            RuleFor(x => x.BrandBannerImage).NotEmpty().WithMessage("Resmi boş bırakma!!");
             RuleFor(x => x.BrandName).NotEmpty().WithMessage("Adı boş bırakma!!");
         }
     }

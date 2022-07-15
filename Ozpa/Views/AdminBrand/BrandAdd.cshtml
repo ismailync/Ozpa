@@ -9,21 +9,29 @@
 
 @using (Html.BeginForm("BrandAdd", "AdminBrand", FormMethod.Post, new { enctype = "multipart/form-data"}))
 {
-    <form  method="post" enctype="multipart/form-data">
-        @Html.Label("Marka adı")
-        @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.BrandName)
-        <br />
-        <br />
-        @Html.Label("Marka resmi")
-        <br />
-        <input type="file" name="BrandImage" />
-        <br />
-        @Html.ValidationMessageFor(x => x.BrandImage)
-        <br />
-        <br />
-
-        <button class="btn btn-info" type="submit">Kaydet</button>
-    </form>
+<form method="post" enctype="multipart/form-data">
+    @Html.Label("Marka adı")
+    @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BrandName)
+    <br />
+    <br />
+    @Html.Label("Marka resmi")
+    <br />
+    <input type="file" name="BrandImage" />
+    <br />
+    @Html.ValidationMessageFor(x => x.BrandImage)
+    <br />
+    <br />
+    @Html.Label("Marka banner resmi")
+    <br />
+    <img src="@ViewBag.BrandBannerImage"/>
+    <br />
+    <input type="file" name="BrandBannerImage" />
+    <br />
+    @Html.ValidationMessageFor(x => x.BrandBannerImage)
+    <br />
+    <br />
+    <button class="btn btn-info" type="submit">Kaydet</button>
+</form>
 }
 

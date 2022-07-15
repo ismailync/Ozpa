@@ -19,7 +19,7 @@ namespace Ozpa.Controllers
         BannerManager bm = new BannerManager(new EfBannerRepository());
         ProductManager pm = new ProductManager(new EfProductRepository());
         BrandManager brm = new BrandManager(new EfBrandRepository());
-        SeriesManager sm = new SeriesManager(new EfSeriesRepository());
+        CategoryManager sm = new CategoryManager(new EfCategoryRepository());
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -32,7 +32,7 @@ namespace Ozpa.Controllers
             mainModel.Banners = bm.GetList();
             mainModel.Products = pm.GetList();
             mainModel.Brands = brm.GetList();
-            mainModel.Series = sm.GetList();
+            mainModel.Categories = sm.GetList();
             return View(mainModel);
         }
 

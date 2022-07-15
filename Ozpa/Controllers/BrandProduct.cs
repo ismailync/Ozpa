@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Ozpa.Controllers
 {
     public class BrandProduct : Controller
     {
-        ProductManager pm = new ProductManager(new EfProductRepository());
+        BrandManager bm = new BrandManager(new EfBrandRepository());
         public IActionResult Index(int id)
         {
-            var values = pm.GetProductListByBrand(id);
+            var values = bm.GetBrandWithProductsByBrandId(id);
             return View(values);
 
         }

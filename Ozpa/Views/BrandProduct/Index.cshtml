@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model List<Product>
+@model Brand
 @{
     ViewData["Title"] = "ProductListIndex";
     Layout = "~/Views/Shared/UserLayout.cshtml";
@@ -11,22 +11,12 @@
 <body class="template-color-5 font-family-02">
 
     <div class="main-wrapper wrapper-boxed_layout">
-        <div class="breadcrumb-area">
+        <div class="breadcrumb-area" style="background-image: url(@Model.BrandBannerImage)">
             <div class="container">
                 <div class="breadcrumb-content">
-                    <h2>Shop List View</h2>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Shop List Fullwidth</li>
-                    </ul>
                 </div>
             </div>
         </div>
-        @*<div class="col-12  mt-5">
-            <div class="section-title">
-                <h3 class="heading">Ürünler</h3>
-            </div>
-        </div>*@
         <!-- Begin Quicky's Content Wrapper Area -->
         <div class="quicky-content_wrapper pt-30 pb-30">
             <div class="container">
@@ -34,17 +24,17 @@
                     <div class="col-lg-2 order-2 order-lg-1 col-4">
                         <div class="quicky-sidebar-catagories_area">
                             @*<div class="quicky-sidebar_categories category-module">
-                                <dl>
-                                    <dt>Coffee</dt>
-                                    <dd>black hot drink</dd>
-                                </dl>
-                            </div>*@
+                                    <dl>
+                                        <dt>Coffee</dt>
+                                        <dd>black hot drink</dd>
+                                    </dl>
+                                </div>*@
                         </div>
                     </div>
                     <!--  class="product-content bg-snow" -->
                     <div class="col-lg-10 order-1 order-lg-2">
                         <div class="shop-product-wrap grid gridview-3 row">
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Products)
                             {
                                 <div class="col-8">
                                     <div class="product-item">

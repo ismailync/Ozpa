@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,13 @@ namespace Ozpa.Controllers
     public class ProductListController : Controller
     {
         ProductManager bm = new ProductManager(new EfProductRepository());
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
 
         public IActionResult ProductListIndex()
         {
-            var values = bm.GetProductListWithCategory();
+            var products = bm.GetList();
+            var categories = cm.GetList();
+            var values = new CategoriesProducts { Categories = categories, Products = products };
             return View(values);
         }
 

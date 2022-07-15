@@ -12,6 +12,8 @@
 {
     @Html.HiddenFor(x => x.BrandId)
     @Html.Hidden("Path", (string)ViewBag.Path)
+    @Html.Hidden("PathTo", (string)ViewBag.PathTo)
+
 
     @Html.Label("Marka adı")
     @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
@@ -26,6 +28,15 @@
     <input type="file" name="BrandImage" />
     <br />
     @Html.ValidationMessageFor(x => x.BrandImage)
+    <br />
+    @Html.Label("Marka banner resmi")
+    <br />
+    <img src="@ViewBag.BrandBannerImage" width="400" height="200" />
+    <br />
+    <br />
+    <input type="file" name="BrandBannerImage" />
+    <br />
+    @Html.ValidationMessageFor(x => x.BrandBannerImage)
     <br />
     <br />
     <button class="btn btn-success">Güncelle</button>

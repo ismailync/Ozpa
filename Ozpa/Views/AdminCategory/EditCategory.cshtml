@@ -7,19 +7,53 @@
 <h1>Kategori düzenle</h1>
 <br />
 
-@using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post))
+@using (Html.BeginForm("EditCategory", "AdminCategory", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.CategoryId)
+    @Html.Hidden("Path", (string)ViewBag.Path)
+    @Html.Hidden("PathTo", (string)ViewBag.PathTo)
+
     @Html.Label("Kategori adı")
     @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.CategoryName)
     <br />
     <br />
-    @Html.Label("Parent id")
-    @Html.TextBoxFor(x => x.CategoryParentId, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.CategoryParentId)
+    @Html.Label("Kategory resmi")
+    <br />
+    <img src="@ViewBag.CategoryImage" width="400" height="200" />
+    <br />
+    <input type="file" name="CategoryImage" />
     <br />
     <br />
+    @Html.ValidationMessageFor(x => x.CategoryImage)
+    <br />
+    <br />
+    @Html.Label("Seri resmi")
+    <br />
+    <img src="@ViewBag.CategorySeriesImage" width="400" height="200" />
+    <br />
+    <input type="file" name="CategorySeriesImage" />
+    <br />
+    <br />
+    @Html.ValidationMessageFor(x => x.CategorySeriesImage)
+    <br />
+    <br />
+    @Html.Label("Seri")
+    @Html.DropDownList("CategorySeries",
+        new List<SelectListItem> {
+            new SelectListItem {
+               Text="True",
+               Value="True",
+
+            },
+            new SelectListItem {
+               Text="False",
+               Value="False",
+            },
+        }, new { @class = "form-control" })
+    <br />
+    <br />
+
     <button class="btn btn-success">Güncelle</button>
 
 }

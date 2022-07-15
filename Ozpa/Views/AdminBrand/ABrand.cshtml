@@ -15,6 +15,7 @@
     <tr>
         <th>Marka adı</th>
         <th>Marka resim</th>
+        <th>Marka banner resim</th>
         <th>Düzenle</th>
         <th>Sil</th>
     </tr>
@@ -25,6 +26,11 @@
             <td>
                 <a>
                     <img src="@item.BrandImage">
+                </a>
+            </td>
+            <td>
+                <a>
+                    <img src="@item.BrandBannerImage">
                 </a>
             </td>
             <td><a href="/AdminBrand/EditBrand/@item.BrandId" class="btn btn-success">Düzenle</a></td>

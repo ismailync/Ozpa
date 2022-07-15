@@ -12,18 +12,26 @@
 <br />
 <table class="table table-bordered">
     <tr>
-        <th>Kategori id</th>
         <th>Kategori ad</th>
-        <th>Parent kategori</th>
+        <th>Kategori Resim</th>
+        <th>Seri Resim</th>
         <th>Düzenle</th>
         <th>Sil</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.CategoryId</td>
             <td>@item.CategoryName</td>
-            <td>@item.CategoryParentId</td>
+            <td>
+                <a>
+                    <img src="@item.CategoryImage">
+                </a>
+            </td>
+            <td>
+                <a>
+                    <img src="@item.CategorySeriesImage">
+                </a>
+            </td>
             <td><a href="/AdminCategory/EditCategory/@item.CategoryId" class="btn btn-success">Düzenle</a></td>
             <td><a href="/AdminCategory/Delete/@item.CategoryId" class="btn btn-danger">Sil</a></td>
         </tr>

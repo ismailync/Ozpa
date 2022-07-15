@@ -26,6 +26,7 @@ namespace BusinessLayer.Concrete
             return _brandDal.GetListAll();
         }
 
+
         public void TAdd(Brand t)
         {
             _brandDal.Insert(t);
@@ -39,6 +40,11 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Brand t)
         {
             _brandDal.Update(t);
+        }
+
+        public Brand GetBrandWithProductsByBrandId(int brandId)
+        {
+            return _brandDal.GetBrandWithProductsByBrandId(brandId);
         }
     }
 }

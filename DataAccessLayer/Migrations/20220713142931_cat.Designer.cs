@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220713142931_cat")]
+    partial class cat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,9 +65,6 @@ namespace DataAccessLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BrandBannerImage")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BrandImage")
                         .HasColumnType("nvarchar(max)");
@@ -157,6 +156,29 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
+                {
+                    b.Property<int>("SeriesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SeriesImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeriesName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SeriesId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Series");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Banner", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
@@ -177,6 +199,15 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Brand");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });

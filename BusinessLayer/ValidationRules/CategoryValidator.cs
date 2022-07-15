@@ -12,9 +12,10 @@ namespace BusinessLayer.ValidationRules
     {
         public CategoryValidator()
         {
+            RuleFor(x => x.CategoryImage).NotEmpty().WithMessage("Resmi boş bırakma!!");
+            RuleFor(x => x.CategorySeriesImage).NotEmpty().WithMessage("Resmi boş bırakma!!");
             RuleFor(x => x.CategoryName).NotEmpty().WithMessage("Kategoriyi boş bırakma!!");
             //RuleFor(x => x.CategoryParentId.ToString()).NotEmpty().WithMessage("Kategori 2 yi boş bırakma!!");
-            RuleFor(p => p.CategoryParentId).NotNull().WithMessage("Kategoriyi boş bırakma!!");
         }
     }
 }

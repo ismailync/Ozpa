@@ -10,11 +10,9 @@ namespace Ozpa.Controllers
 {
     public class AboutController : Controller
     {
-        AboutManager cm = new AboutManager(new EfAboutRepository());
         public IActionResult AboutIndex()
         {
-            var values = cm.GetList();
-            return View(values);
+            return View();
         }
     }
 }

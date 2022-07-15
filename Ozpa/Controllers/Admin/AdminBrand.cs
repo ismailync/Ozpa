@@ -38,7 +38,10 @@ namespace Ozpa.Controllers.Admin
 
             var filePath = _hostingEnvironment.WebRootPath + value.BrandImage;
             FileInfo fi = new FileInfo(filePath);
-            fi.Delete();
+            fi.Delete();   
+            var filePath2 = _hostingEnvironment.WebRootPath + value.BrandBannerImage;
+            FileInfo fi2 = new FileInfo(filePath2);
+            fi2.Delete();
             return RedirectToAction("ABrand");
         }
 
@@ -60,6 +63,16 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.BrandImage.CopyTo(stream);
                 br.BrandImage = "/Image/BrandImage/" +newimagename;
+                stream.Close();
+            }
+            if (b.BrandBannerImage != null)
+            {
+                var extension = Path.GetExtension(b.BrandBannerImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/BrandBannerImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BrandBannerImage.CopyTo(stream);
+                br.BrandBannerImage = "/Image/BrandBannerImage/" + newimagename;
                 stream.Close();
             }
             br.BrandName = b.BrandName;
@@ -86,7 +99,9 @@ namespace Ozpa.Controllers.Admin
         {
             var values = cm.TGetById(id);
             ViewBag.BrandImage = values.BrandImage;
+            ViewBag.BrandBannerImage = values.BrandBannerImage;
             ViewBag.Path = values.BrandImage;
+            ViewBag.PathTo = values.BrandBannerImage;
             return View(values);
         }
         [HttpPost]
@@ -104,9 +119,21 @@ namespace Ozpa.Controllers.Admin
                 b.Path = br.BrandImage;
                 stream.Close();
             }
+            if (b.PathTo == null || b.BrandBannerImage != null)
+            {
+                var extension = Path.GetExtension(b.BrandBannerImage.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Image/BrandBannerImage/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                b.BrandBannerImage.CopyTo(stream);
+                br.BrandBannerImage = "/Image/BrandBannerImage/" + newimagename;
+                b.PathTo = br.BrandBannerImage;
+                stream.Close();
+            }
             br.BrandId = b.BrandId;
             br.BrandName = b.BrandName;
             br.BrandImage = b.Path;
+            br.BrandBannerImage = b.PathTo;
 
             BrandValidator bv = new BrandValidator();
             ValidationResult results = bv.Validate(br);

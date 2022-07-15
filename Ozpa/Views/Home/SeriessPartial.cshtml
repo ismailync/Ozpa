@@ -8,20 +8,20 @@
                     <h3 class="heading">Seriler</h3>
                 </div>
             </div>
-            @foreach (var item in Model.Series)
+            @foreach (var item in Model.Categories)
             {
                 <div class="col-md-4">
                     <div class="banner-item">
                         <div class="banner-img">
-                            <a href="/ProductList/ProductListIndex/@item.SeriesId/">
-                                <img src="@item.SeriesImage" alt="Quicky's Banner">
+                            <a href="/ProductList/ProductListIndex/@item.CategoryId/">
+                                <img src="@item.CategorySeriesImage" alt="Quicky's Banner">
                             </a>
                         </div>
                     </div>
                     <div class="blog-content text-center">
                         <h3 class="heading">
-                            <a href="/ProductList/ProductListIndex/@item.SeriesId/">
-                                @item.SeriesName
+                            <a href="/ProductList/ProductListIndex/@item.CategoryId/">
+                                @item.CategoryName
                             </a>
                         </h3>
                     </div>
