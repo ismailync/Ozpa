@@ -15,10 +15,7 @@
     <tr>
         <th>Ürün ad</th>
         <th>Ürün resim</th>
-        <th>Ürün açıklama</th>
         <th>Ürün trend</th>
-        <th>Ürün marka</th>
-        <th>Ürün kategori</th>
         <th>Düzenle</th>
         <th>Sil</th>
     </tr>
@@ -31,10 +28,7 @@
                     <img src="@item.ProductImage">
                 </a>
             </td>
-            <td>@item.ProductComment</td>
             <td>@item.ProductTrend</td>
-            <td>@item.BrandId</td>
-            <td>@item.CategoryId</td>
             <td><a href="/AdminProduct/EditProduct/@item.ProductId" class="btn btn-success">Düzenle</a></td>
             <td><a href="/AdminProduct/Delete/@item.ProductId" class="btn btn-danger">Sil</a></td>
         </tr>

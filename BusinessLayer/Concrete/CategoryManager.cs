@@ -19,8 +19,7 @@ namespace BusinessLayer.Concrete
         public Category TGetById(int id)
         {
             return _categoryDal.GetByID(id);
-        }
-
+        }     
         public List<Category> GetList()
         {
             return _categoryDal.GetListAll();
@@ -39,6 +38,12 @@ namespace BusinessLayer.Concrete
         public void TUpdate(Category t)
         {
             _categoryDal.Update(t);
-        }  
+        }
+
+        public List<Category> GetSeriesById(int id)
+        {
+            return _categoryDal.GetListAll(x => x.CategoryId == id);
+
+        }
     }
 }

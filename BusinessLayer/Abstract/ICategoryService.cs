@@ -9,5 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface ICategoryService : IGenericService<Category>
     {
+        List<Category> GetSeriesById(int id);
+
     }
 }

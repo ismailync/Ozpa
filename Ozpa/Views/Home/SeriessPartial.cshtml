@@ -10,22 +10,25 @@
             </div>
             @foreach (var item in Model.Categories)
             {
-                <div class="col-md-4">
-                    <div class="banner-item">
-                        <div class="banner-img">
-                            <a href="/ProductList/ProductListIndex/@item.CategoryId/">
-                                <img src="@item.CategorySeriesImage" alt="Quicky's Banner">
-                            </a>
+                @if (item.CategorySeries == true)
+                {
+                    <div class="col-md-4">
+                        <div class="banner-item">
+                            <div class="banner-img">
+                                <a href="/SeriesProduct/Index/@item.CategoryId/">
+                                    <img src="@item.CategorySeriesImage" alt="Quicky's Banner">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog-content text-center">
+                            <h3 class="heading">
+                                <a href="/SeriesProduct/Index/@item.CategoryId/">
+                                    @item.CategoryName
+                                </a>
+                            </h3>
                         </div>
                     </div>
-                    <div class="blog-content text-center">
-                        <h3 class="heading">
-                            <a href="/ProductList/ProductListIndex/@item.CategoryId/">
-                                @item.CategoryName
-                            </a>
-                        </h3>
-                    </div>
-                </div>
+                }
             }
 
         </div>
