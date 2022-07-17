@@ -40,5 +40,13 @@ namespace DataAccessLayer.EntityFramework
                 return result;
             }
         }
+
+        public List<Product> GetSeachProduct(string searchText)
+        {
+            using (var c = new Context())
+            {
+                return c.Products.Where(p => p.ProductName.Contains(searchText)).ToList();
+            }
+        }
     }
 }

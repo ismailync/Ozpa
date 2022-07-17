@@ -61,5 +61,10 @@ namespace BusinessLayer.Concrete
         {
             return _productDal.GetPaged(pageId, 6);
         }
+
+        public List<Product> GetSeachProduct(string searchText)
+        {
+            return _productDal.GetSeachProduct(searchText);
+        }
     }
 }

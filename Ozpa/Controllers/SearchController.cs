@@ -11,9 +11,10 @@ namespace Ozpa.Controllers
     public class SearchController : Controller
     {
         ProductManager bm = new ProductManager(new EfProductRepository());
-        public IActionResult SearchIndex()
+        public IActionResult SearchIndex(string searchText)
         {
-            var values = bm.GetProductListWithCategory();
+            
+            var values = bm.GetSeachProduct(searchText);
             return View(values);
         }
     }

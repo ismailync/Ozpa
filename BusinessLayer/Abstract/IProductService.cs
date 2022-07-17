@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
     {
         List<Product> GetProductListByBrand(int id);
         PaginatedListProduct GetPaged(int pageId);
+        List<Product> GetSeachProduct(string searchText);
     }
 }

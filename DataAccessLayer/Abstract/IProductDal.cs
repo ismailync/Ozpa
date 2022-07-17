@@ -12,5 +12,7 @@ namespace DataAccessLayer.Abstract
         List<Product> GetListWithCategory();
         PaginatedListProduct GetPaged(int page, int pageSize);
 
+        List<Product> GetSeachProduct(string searchText);
+
     }
 }
