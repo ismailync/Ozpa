@@ -20,17 +20,17 @@
                 <div class="row">
                     @foreach (var item in Model.Categories)
                     {
-                        <div class="breadcrumb-area" style="background-image: url(@item.CategoryImage)">
-                            <div class="container">
-                                <div class="breadcrumb-content">
-                                </div>
+                    <div class="breadcrumb-area" style="background-image: url(@item.CategoryImage); margin-bottom:40px;">
+                        <div class="container">
+                            <div class="breadcrumb-content">
                             </div>
                         </div>
+                    </div>
                     }
                     <!--  class="product-content bg-snow" -->
                     <div class="col-lg-12 order-1 order-lg-2">
 
-                        <div class="shop-product-wrap grid gridview-4 row">
+                        <div class="shop-product-wrap grid gridview-2 row">
 
 
                             @foreach (var item in Model.Products)
