@@ -20,5 +20,25 @@ namespace DataAccessLayer.EntityFramework
                 return c.Products.Include(x => x.Category).ToList();
             }
         }
+
+        public PaginatedListProduct GetPaged(int page, int pageSize)
+        {
+            using (var c = new Context())
+            {
+                var result = new PaginatedListProduct();
+                result.CurrentPage = page;
+                result.PageSize = pageSize;
+                result.RowCount = c.Products.Count();
+
+
+                var pageCount = (double)result.RowCount / pageSize;
+                result.PageCount = (int)Math.Ceiling(pageCount);
+
+                var skip = (page - 1) * pageSize;
+                result.Results = c.Products.Skip(skip).Take(pageSize).ToList();
+
+                return result;
+            }
+        }
     }
 }

@@ -56,5 +56,10 @@ namespace BusinessLayer.Concrete
         {
             _productDal.Update(t);
         }
+
+        public PaginatedListProduct GetPaged(int pageId)
+        {
+            return _productDal.GetPaged(pageId, 6);
+        }
     }
 }

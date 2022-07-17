@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220713134434_miga")]
-    partial class miga
+    [Migration("20220717132848_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,6 +66,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BrandBannerImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("BrandImage")
                         .HasColumnType("nvarchar(max)");
 
@@ -84,11 +87,17 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CategoryImage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryParentId")
-                        .HasColumnType("int");
+                    b.Property<bool>("CategorySeries")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("CategorySeriesImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
 
@@ -150,29 +159,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
-                {
-                    b.Property<int>("SeriesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SeriesImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SeriesName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SeriesId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Series");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Banner", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
@@ -185,7 +171,7 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Brand", "Brand")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("BrandId");
 
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
@@ -197,13 +183,9 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Series", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Brand", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

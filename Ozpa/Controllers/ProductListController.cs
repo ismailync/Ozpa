@@ -14,11 +14,12 @@ namespace Ozpa.Controllers
         ProductManager bm = new ProductManager(new EfProductRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
 
-        public IActionResult ProductListIndex()
+        public IActionResult ProductListIndex(int pageId = 1)
         {
-            var products = bm.GetList();
+            //var products = bm.GetList();
+            var products = bm.GetPaged(pageId);
             var categories = cm.GetList();
-            var values = new CategoriesProducts { Categories = categories, Products = products };
+            var values = new CategoriesProducts { Categories = categories, PaginatedProducts = products };
             return View(values);
         }
 

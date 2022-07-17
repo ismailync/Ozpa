@@ -8,8 +8,9 @@ namespace EntityLayer.Concrete
 {
     public class CategoriesProducts
     {
-        public List<Product> Products { get; set; }
+        public PaginatedListProduct PaginatedProducts { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Product> Products { get; set; }
 
     }
 }
