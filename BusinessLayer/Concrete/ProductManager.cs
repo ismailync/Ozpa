@@ -59,7 +59,7 @@ namespace BusinessLayer.Concrete
 
         public PaginatedListProduct GetPaged(int pageId)
         {
-            return _productDal.GetPaged(pageId, 6);
+            return _productDal.GetPaged(pageId, 9);
         }
 
         public List<Product> GetSeachProduct(string searchText)

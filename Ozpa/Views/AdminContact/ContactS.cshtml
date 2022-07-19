@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.Contact
+
+@{
+    ViewData["Title"] = "EditNews";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using (Html.BeginForm("ContactS", "AdminContact", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Tarih")
+    @Html.TextBoxFor(x => x.ContactDTime, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Adı")
+    @Html.TextBoxFor(x => x.ContactName, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Mail")
+    @Html.TextBoxFor(x => x.ContactEMail, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.ContactSubject, new { @class = "form-control" })
+    <br />
+    <br />
+    @Html.Label("Mesaj")
+    @Html.TextAreaFor(x => x.ContactMessage, 10, 5, new { @class = "form-control" })
+    <br />
+    <br />
+
+    <a class="btn btn-success" href="~/AdminContact/Index">
+        <span class="menu-title">Geri</span>
+    </a>
+}
