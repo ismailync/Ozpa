@@ -24,6 +24,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Product> Products { get; set; }
         public DbSet<AdminLogin> AdminLogins { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Cert> Certs { get; set; }
 
     }
 }

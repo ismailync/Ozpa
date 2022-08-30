@@ -32,6 +32,7 @@
     <Folder Include="wwwroot\Image\CategoryImage\" />
     <Folder Include="wwwroot\Image\CategorySeriesImage\" />
     <Folder Include="wwwroot\Image\BrandBannerImage\" />
+    <Folder Include="wwwroot\Image\CertImage\" />
     <Folder Include="wwwroot\Image\NewsImage\" />
     <Folder Include="wwwroot\Image\SliderImage\" />
     <Folder Include="wwwroot\Image\ProductImage\" />

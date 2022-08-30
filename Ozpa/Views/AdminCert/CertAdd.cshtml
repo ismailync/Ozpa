@@ -1,0 +1,24 @@
+﻿@model Ozpa.Models.AddCertImage
+
+@{
+    ViewData["Title"] = "CertAdd";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Sertifika ekle</h1>
+<br />
+
+@using (Html.BeginForm("CertAdd", "AdminCert", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form method="post" enctype="multipart/form-data">     
+       
+        @Html.Label("Sertifika resim")
+        <br />
+        <input type="file" name="CertImage" />
+        <br />
+        @Html.ValidationMessageFor(x => x.CertImage)
+        <br />
+        <br />
+        <button class="btn btn-info" type="submit">Kaydet</button>
+    </form>
+}

@@ -15,6 +15,12 @@ namespace Ozpa.Controllers
         public IActionResult Index(int id)
         {
             var values = bm.GetBrandWithProductsByBrandId(id);
+            var categoryList = new List<Category>();
+            foreach (var product in values.Products)
+            {
+                categoryList.Add(product.Category);
+            }
+            values.Categories = categoryList;
             return View(values);
 
         }

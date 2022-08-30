@@ -16,7 +16,8 @@ namespace DataAccessLayer.EntityFramework
         public Brand GetBrandWithProductsByBrandId(int brandId)
         {
             using var c = new Context();
-            return c.Brands.Where(p => p.BrandId == brandId).Include(x => x.Products).FirstOrDefault();
+            return c.Brands.Where(p => p.BrandId == brandId)
+                .Include(x => x.Products).ThenInclude(x => x.Category).FirstOrDefault();
         }
     }
 }

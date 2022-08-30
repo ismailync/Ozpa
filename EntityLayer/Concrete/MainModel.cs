@@ -12,5 +12,6 @@ namespace EntityLayer.Concrete
         public IEnumerable<Banner> Banners { get; set; }
         public IEnumerable<Brand> Brands { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public IEnumerable<Cert> Certs { get; set; }
     }
 }

@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrete
+@model List<Cert>
+@{
+    ViewData["Title"] = "ACert";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Sertifika</h1>
+<p>680x460</p>
+<br />
+<a href="CertAdd" class="btn btn-primary">Yeni Ekle</a>
+<br />
+<br />
+<table class="table table-bordered" width="30px" height="30px">
+    <tr>
+        <th>Sertifika resim</th>
+        <th>Düzenle</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a>
+                    <img src="@item.CertImage">
+                </a>
+            </td>
+            <td><a href="/AdminCert/EditCert/@item.CertId" class="btn btn-success">Düzenle</a></td>
+            <td><a href="/AdminCert/Delete/@item.CertId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>

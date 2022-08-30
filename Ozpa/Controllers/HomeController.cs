@@ -20,6 +20,8 @@ namespace Ozpa.Controllers
         ProductManager pm = new ProductManager(new EfProductRepository());
         BrandManager brm = new BrandManager(new EfBrandRepository());
         CategoryManager sm = new CategoryManager(new EfCategoryRepository());
+        CertManager cm = new CertManager(new EfCertRepository());
+
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -33,6 +35,7 @@ namespace Ozpa.Controllers
             mainModel.Products = pm.GetList();
             mainModel.Brands = brm.GetList();
             mainModel.Categories = sm.GetList();
+            mainModel.Certs = cm.GetList();
             return View(mainModel);
         }
 

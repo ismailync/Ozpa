@@ -4,14 +4,16 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220729180300_mig44")]
+    partial class mig44
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,21 +107,6 @@ namespace DataAccessLayer.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Cert", b =>
-                {
-                    b.Property<int>("CertId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CertImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CertId");
-
-                    b.ToTable("Certs");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Contact", b =>

@@ -18,14 +18,21 @@
                         @foreach (var item in Model)
                         {
                             <div class="col-md-4 col-6 custom-xxs-col">
-                                <div class="banner-item">
-                                    <div class="banner-img">
-                                        <a>
-                                            <img src="@item.ProductImage" alt="Quicky's Banner">
-                                        </a>
+                                <div class="sp-img_area">
+                                    <div class="single-slide red zoom">
+                                        <img src="@item.ProductImage" alt="Quicky's Product Image">
                                     </div>
                                 </div>
                             </div>
+                            @*<div class="col-md-4 col-6 custom-xxs-col">
+                                    <div class="banner-item">
+                                        <div class="banner-img">
+                                            <a>
+                                                <img src="@item.ProductImage" alt="Quicky's Banner">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>*@
                             <div class="col-lg-6">
                                 <div class="text-area pt-md-155">
                                     <h2 class="heading">@item.ProductName</h2>

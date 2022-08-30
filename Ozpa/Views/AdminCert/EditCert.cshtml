@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.Cert
+
+@{
+    ViewData["Title"] = "EditCert";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<h1>Sertifika düzenle</h1>
+<br />
+
+@using (Html.BeginForm("EditCert", "AdminCert", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.CertId)
+    @Html.Hidden("Path", (string)ViewBag.Path)  
+    @Html.Label("Haber resim")
+    <br />
+    <img src="@ViewBag.CertImage" width="400" height="200" />
+    <br />
+    <br />
+    <input type="file" name="NewsImage" />
+    <br />
+    @Html.ValidationMessageFor(x => x.CertImage)
+    <br />
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+}
