@@ -14,8 +14,10 @@
                     <h4 class="heading">Güvenle Üretiyoruz</h4>
                 </div>
             </div>
-            <div class="col-lg-12">
-                <div class="quicky-element-carousel product-slider" data-slick-options='{
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="quicky-element-carousel product-slider" data-slick-options='{
                             "slidesToShow": 6,
                             "slidesToScroll": 1,
                             "infinite": true,
@@ -33,17 +35,15 @@
                             "slidesToShow": 1
                             }}
                         ]'>
-                    @foreach (var item in Model.Certs)
-                    {
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="@item.CertImage" @*alt="Quicky's Blog"*@>
-                            </div>
-                        </div>
-
-                    }
+            @foreach (var item in Model.Certs)
+            {
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="@item.CertImage" @*alt="Quicky's Blog"*@>
+                    </div>
                 </div>
-            </div>
+
+            }
         </div>
     </div>
 </div>

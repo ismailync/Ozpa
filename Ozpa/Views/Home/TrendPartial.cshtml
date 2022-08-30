@@ -13,8 +13,11 @@
                         <h4 class="heading">Trend Ürünler</h4>
                     </div>
                 </div>
-                <div class="col-lg-12">
-                    <div class="quicky-element-carousel product-slider" data-slick-options='{
+
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="quicky-element-carousel product-slider" data-slick-options='{
                             "slidesToShow": 4,
                             "slidesToScroll": 1,
                             "infinite": true,
@@ -32,29 +35,27 @@
                             "slidesToShow": 1
                             }}
                         ]'>
-                        @foreach (var item in Model.Products)
-                        {
-                            if (item.ProductTrend == true)
-                            {
-                                <div class="blog-item">
-                                    <div class="blog-img">
-                                        <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
-                                            <img src="@item.ProductImage" alt="Quicky's Blog">
-                                        </a>
-                                    </div>
-                                    <div class="blog-content text-center">
-                                        <h3 class="heading">
-                                            <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
-                                                @item.ProductName
-                                            </a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            }
+                @foreach (var item in Model.Products)
+                {
+                    if (item.ProductTrend == true)
+                    {
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                    <img src="@item.ProductImage" alt="Quicky's Blog">
+                                </a>
+                            </div>
+                            <div class="blog-content text-center">
+                                <h3 class="heading">
+                                    <a href="/ProductList/ProductDetailsIndex/@item.ProductId/">
+                                        @item.ProductName
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                    }
 
-                        }
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
