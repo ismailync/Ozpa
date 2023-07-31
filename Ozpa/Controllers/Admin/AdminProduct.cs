@@ -159,6 +159,8 @@ namespace Ozpa.Controllers.Admin
                 var stream = new FileStream(location, FileMode.Create);
                 b.ProductImage.CopyTo(stream);
                 br.ProductImage = "/Image/ProductImage/" + newimagename;
+                b.Path = br.ProductImage;
+                stream.Close();
             }
             br.ProductId = b.ProductId;
             br.BrandId = b.BrandId;
